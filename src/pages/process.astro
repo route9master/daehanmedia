@@ -1,0 +1,316 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import NextPage from '../components/NextPage.astro';
+import { steps } from '../data/process';
+---
+<Base title="진행 순서 — 대한미디어그룹" description="상담부터 관리까지 5단계. 준비하실 것은 많지 않습니다.">
+  <Header />
+
+  <main>
+    <!-- 헤더 -->
+    <section class="proc-header">
+      <div class="proc-header-inner">
+        <p class="eyebrow proc-eyebrow">PROCESS</p>
+        <h1 class="display-2 proc-title">진행 순서</h1>
+        <p class="proc-sub">처음부터 끝까지 준비하실 것은 많지 않습니다.</p>
+      </div>
+    </section>
+
+    <!-- 5단계 -->
+    <section class="proc-steps">
+      <div class="proc-steps-inner">
+        {steps.map((step) => (
+          <article class="step" data-num={step.num}>
+            <div class="step-num-col">
+              <span class="step-num">{step.num}</span>
+            </div>
+            <div class="step-main">
+              <h2 class="step-name">{step.name}</h2>
+              <p class="step-desc">{step.desc}</p>
+            </div>
+            <div class="step-client">
+              <span class="step-client-label">광고주가 하실 일</span>
+              <p class={`step-client-text${step.clientHighlight ? ' step-highlight' : ''}`}>{step.client}</p>
+              {step.clientSub && <p class="step-client-sub">{step.clientSub}</p>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- 하단 -->
+    <section class="proc-bottom">
+      <div class="proc-bottom-inner">
+        <p class="proc-conclusion">준비하실 것이 거의 없다는 말은, 저희가 준비한다는 뜻입니다.</p>
+        <a href="/contact" class="proc-cta"><span class="cta-arrow">→</span>상담 문의</a>
+      </div>
+    </section>
+  </main>
+
+  <NextPage href="/contact" label="상담 문의" />
+  <Footer />
+</Base>
+
+<style>
+  .proc-header {
+    padding-top: 72px;
+  }
+
+  .proc-header-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: clamp(80px, 14vh, 200px) clamp(24px, 7vw, 120px) clamp(48px, 6vh, 80px);
+  }
+
+  .proc-eyebrow {
+    color: var(--ink-mute);
+    margin-bottom: 1rem;
+  }
+
+  .proc-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .proc-sub {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--ink-mute);
+    letter-spacing: -0.01em;
+  }
+
+  .proc-steps-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 7vw, 120px);
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 160px 1fr 340px;
+    align-items: center;
+    min-height: min(64vh, 520px);
+    border-top: 1px solid var(--paper-edge);
+  }
+
+  .step:last-child {
+    border-bottom: 1px solid var(--paper-edge);
+  }
+
+  .step-num-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    color: var(--paper-edge);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .step-num.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 240ms cubic-bezier(.2,.7,.1,1),
+                transform 240ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .step-main {
+    padding: 0 clamp(24px, 3vw, 48px);
+  }
+
+  .step-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .step-name.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 240ms cubic-bezier(.2,.7,.1,1) 80ms,
+                transform 240ms cubic-bezier(.2,.7,.1,1) 80ms;
+  }
+
+  .step-desc {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    word-break: keep-all;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .step-desc.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 240ms cubic-bezier(.2,.7,.1,1) 140ms,
+                transform 240ms cubic-bezier(.2,.7,.1,1) 140ms;
+  }
+
+  .step-client {
+    border-left: 2px solid var(--seal);
+    padding-left: clamp(16px, 2vw, 28px);
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .step-client.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 240ms cubic-bezier(.2,.7,.1,1) 200ms,
+                transform 240ms cubic-bezier(.2,.7,.1,1) 200ms;
+  }
+
+  .step-client-label {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--ink-mute);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .step-client-text {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .step-highlight {
+    color: var(--seal);
+    font-weight: 600;
+  }
+
+  .step-client-sub {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--ink-mute);
+    margin-top: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .proc-bottom {
+    padding: clamp(80px, 12vh, 160px) 0 clamp(96px, 14vh, 200px);
+  }
+
+  .proc-bottom-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 7vw, 120px);
+    text-align: center;
+  }
+
+  .proc-conclusion {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+    word-break: keep-all;
+  }
+
+  .proc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: var(--ink);
+    padding: 0 0 4px;
+    border-bottom: 1px solid var(--ink);
+    transition: border-color 180ms cubic-bezier(.2,.7,.1,1),
+                transform 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .proc-cta:hover {
+    border-bottom-color: var(--seal);
+    transform: translateX(4px);
+  }
+
+  .cta-arrow {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 768px) {
+    .step {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: clamp(32px, 5vh, 56px) 0;
+      min-height: auto;
+    }
+
+    .step-num-col {
+      justify-content: flex-start;
+    }
+
+    .step-num {
+      font-size: 2.5rem;
+    }
+
+    .step-main {
+      padding: 0;
+    }
+
+    .step-name {
+      font-size: 1.5rem;
+    }
+
+    .step-client {
+      margin-top: 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  import Lenis from 'lenis';
+
+  const lenis = new Lenis({ lerp: 0.085 });
+  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  const stepEls = document.querySelectorAll<HTMLElement>('.step');
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          el.querySelector('.step-num')?.classList.add('visible');
+          el.querySelector('.step-name')?.classList.add('visible');
+          el.querySelector('.step-desc')?.classList.add('visible');
+          el.querySelector('.step-client')?.classList.add('visible');
+          obs.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+  stepEls.forEach((el) => obs.observe(el));
+</script>

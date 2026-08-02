@@ -1,0 +1,30 @@
+/* === Noto Serif KR — 국문 디스플레이 (Bold 700, Heavy 900만) === */
+@import '@fontsource/noto-serif-kr/korean-700.css';
+@import '@fontsource/noto-serif-kr/korean-900.css';
+@import '@fontsource/noto-serif-kr/latin-700.css';
+@import '@fontsource/noto-serif-kr/latin-900.css';
+
+/* === Wanted Sans — 국문 본문 (400, 500, 600만) === */
+@import 'wanted-sans/fonts/webfonts/static/split/WantedSans-Regular.css';
+@import 'wanted-sans/fonts/webfonts/static/split/WantedSans-Medium.css';
+@import 'wanted-sans/fonts/webfonts/static/split/WantedSans-SemiBold.css';
+
+/* === Geist Mono — 데이터·라벨 (400, 500) === */
+@import '@fontsource/geist-mono/latin-400.css';
+@import '@fontsource/geist-mono/latin-500.css';
+
+/* === Redaction 4단계 — 라틴 시그니처 (400만) === */
+@import '@fontsource/redaction-100/400.css';
+@import '@fontsource/redaction-70/400.css';
+@import '@fontsource/redaction-35/400.css';
+@import '@fontsource/redaction-10/400.css';
+
+:root {
+  --font-display: 'Noto Serif KR', serif;
+  --font-body: 'Wanted Sans', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --font-rd-100: 'Redaction 100', serif;
+  --font-rd-70: 'Redaction 70', serif;
+  --font-rd-35: 'Redaction 35', serif;
+  --font-rd-10: 'Redaction 10', serif;
+}

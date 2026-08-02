@@ -1,0 +1,467 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { categories, services } from '../../data/services';
+import Plate from '../../components/plates/Plate.astro';
+import type { Category, ServiceItem } from '../../data/services';
+
+export function getStaticPaths() {
+  return categories.map((cat) => ({
+    params: { category: cat.slug },
+    props: { category: cat, items: services[cat.slug] },
+  }));
+}
+
+interface Props {
+  category: Category;
+  items: ServiceItem[];
+}
+
+const { category, items } = Astro.props;
+---
+<Base
+  title={`${category.ko} — 광고 도감 — 대한미디어그룹`}
+  description={`${category.tagline}. ${category.count}개 광고 상품.`}
+>
+  <Header />
+
+  <main>
+    <!-- 검인 (seal stamp) -->
+    <div
+      class="seal-stamp"
+      id="seal-stamp"
+      style={`--seal-rotate: ${category.sealRotate};`}
+      aria-hidden="true"
+    >
+      <img src="/logo/dmg-symbol.svg" alt="" width="120" height="120" />
+    </div>
+
+    <!-- 섹션 헤더 -->
+    <section class="cat-header">
+      <div class="cat-header-inner">
+        <p class="eyebrow" style="color:var(--ink-mute); margin-bottom:1rem;">{category.code} · {category.ko}</p>
+        <h1 class="cat-title" id="cat-title">{category.en}</h1>
+        <p class="cat-tagline">{category.tagline}</p>
+      </div>
+    </section>
+
+    <!-- 도감 -->
+    <section class="dogam">
+      <!-- 모바일 가로 색인 -->
+      <nav class="index-mobile" aria-label="항목 색인">
+        {items.map((item) => (
+          <a href={`#${item.code}`} class="index-mobile-link" data-code={item.code}>{item.code}</a>
+        ))}
+      </nav>
+
+      <div class="dogam-grid">
+        <!-- 좌측 색인 (데스크톱) -->
+        <nav class="index-sidebar" aria-label="항목 색인">
+          {items.map((item) => (
+            <a href={`#${item.code}`} class="index-link" data-code={item.code}>{item.code}</a>
+          ))}
+        </nav>
+
+        <!-- 우측 판면들 -->
+        <div class="panels">
+          {items.map((item) => (
+            <article class="panel" id={item.code} data-code={item.code}>
+              <div class="panel-content">
+                <span class="panel-code data">{item.code}</span>
+                <h2 class="panel-title display-2">{item.title}</h2>
+                <div class="panel-rule"></div>
+                <div class="panel-body">
+                  {item.lines.map((line) => (
+                    <p>{line}</p>
+                  ))}
+                </div>
+                <div class="panel-foot">
+                  <div class="panel-foot-rule"></div>
+                  <div class="panel-foot-group">
+                    <span class="panel-foot-label">어울리는 곳</span>
+                    <span class="panel-foot-val">{item.fit}</span>
+                  </div>
+                  <div class="panel-foot-group">
+                    <span class="panel-foot-label">과금</span>
+                    <span class="panel-foot-val panel-foot-billing">{item.billing}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-plate">
+                <Plate type={item.plate} />
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  /* 검인 */
+  .seal-stamp {
+    position: fixed;
+    top: 120px;
+    right: clamp(24px, 7vw, 120px);
+    z-index: 10;
+    opacity: 0;
+    transform: scale(1.14) rotate(var(--seal-rotate, -4deg));
+    pointer-events: none;
+  }
+
+  .seal-stamp img {
+    display: block;
+    width: 72px;
+    height: 72px;
+    filter: brightness(0) saturate(100%) invert(18%) sepia(80%) saturate(2800%) hue-rotate(348deg) brightness(85%) contrast(95%);
+  }
+
+  /* 섹션 헤더 */
+  .cat-header {
+    padding-top: 72px;
+  }
+
+  .cat-header-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: clamp(80px, 14vh, 200px) clamp(24px, 7vw, 120px) clamp(48px, 6vh, 80px);
+  }
+
+  .cat-title {
+    font-family: var(--font-rd-100);
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    line-height: 1.05;
+    margin-bottom: 1rem;
+    transition: font-family 0.7s cubic-bezier(.2,.7,.1,1);
+  }
+
+  .cat-title.resolved {
+    font-family: var(--font-rd-10);
+  }
+
+  .cat-tagline {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    color: var(--ink-mute);
+    line-height: 1.6;
+  }
+
+  /* 모바일 가로 색인 */
+  .index-mobile {
+    display: none;
+  }
+
+  /* 도감 그리드 */
+  .dogam {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 7vw, 120px);
+  }
+
+  .dogam-grid {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 0;
+  }
+
+  /* 좌측 색인 */
+  .index-sidebar {
+    position: sticky;
+    top: 96px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-right: 2rem;
+    border-right: 1px solid var(--paper-edge);
+    height: fit-content;
+  }
+
+  .index-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+    opacity: 0.45;
+    text-decoration: none;
+    padding: 4px 0;
+    transition: color 180ms cubic-bezier(.2,.7,.1,1),
+                opacity 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .index-link.active {
+    color: var(--seal);
+    opacity: 1;
+  }
+
+  .index-link.active::before {
+    content: '▸';
+    margin-right: 4px;
+  }
+
+  /* 판면 */
+  .panel {
+    min-height: min(78vh, 640px);
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 80px;
+    align-items: center;
+    padding: clamp(48px, 6vh, 80px) 0 clamp(48px, 6vh, 80px) clamp(32px, 3vw, 64px);
+    border-top: 1px solid var(--paper-edge);
+  }
+
+  .panel:first-child {
+    border-top: none;
+  }
+
+  .panel-content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .panel-plate {
+    opacity: 0;
+    min-height: 460px;
+  }
+
+  .panel-plate.visible {
+    opacity: 0.9;
+    transition: opacity 300ms cubic-bezier(.2,.7,.1,1) 120ms;
+  }
+
+  .panel-code {
+    color: var(--ink-mute);
+    margin-bottom: 1.5rem;
+  }
+
+  .panel-title {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .panel-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 220ms cubic-bezier(.2,.7,.1,1),
+                transform 220ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .panel-rule {
+    width: 220px;
+    height: 1px;
+    background: var(--paper-edge);
+    margin: 1.5rem 0;
+  }
+
+  .panel-body {
+    max-width: 36rem;
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .panel-body.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 220ms cubic-bezier(.2,.7,.1,1) 40ms,
+                transform 220ms cubic-bezier(.2,.7,.1,1) 40ms;
+  }
+
+  .panel-body p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .panel-foot {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .panel-foot-rule {
+    width: 220px;
+    height: 1px;
+    background: var(--paper-edge);
+    margin-bottom: 4px;
+  }
+
+  .panel-foot-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .panel-foot-label {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--ink-mute);
+  }
+
+  .panel-foot-val {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .panel-foot-billing {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    color: var(--seal);
+  }
+
+  /* 모바일 */
+  @media (max-width: 768px) {
+    .dogam-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .index-sidebar {
+      display: none;
+    }
+
+    .index-mobile {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding: 12px 0;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--paper-edge);
+      position: sticky;
+      top: 72px;
+      background: var(--paper);
+      z-index: 5;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .index-mobile-link {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      color: var(--ink-mute);
+      opacity: 0.5;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 4px 8px;
+      transition: color 180ms cubic-bezier(.2,.7,.1,1),
+                  opacity 180ms cubic-bezier(.2,.7,.1,1);
+    }
+
+    .index-mobile-link.active {
+      color: var(--seal);
+      opacity: 1;
+    }
+
+    .panel {
+      padding-left: 0;
+      grid-template-columns: 1fr;
+    }
+
+    .panel-plate {
+      display: none;
+    }
+
+    .seal-stamp {
+      top: auto;
+      bottom: 24px;
+      right: 24px;
+    }
+
+    .seal-stamp img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+</style>
+
+<script>
+  import Lenis from 'lenis';
+  import { animate } from 'motion';
+
+  const lenis = new Lenis({ lerp: 0.085 });
+  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  // Redaction 100 → 10 transition
+  const catTitle = document.getElementById('cat-title');
+  if (catTitle) {
+    setTimeout(() => catTitle.classList.add('resolved'), 100);
+  }
+
+  // 검인 (seal stamp) — 1회
+  const seal = document.getElementById('seal-stamp');
+  if (seal) {
+    const rotate = getComputedStyle(seal).getPropertyValue('--seal-rotate').trim() || '-4deg';
+    animate(
+      seal,
+      {
+        opacity: [0, 0.55],
+        scale: [1.14, 1],
+        rotate: [rotate, rotate],
+      },
+      {
+        duration: 0.18,
+        easing: [0.15, 1.1, 0.3, 1],
+        fill: 'forwards',
+        delay: 0.4,
+      }
+    );
+    // 잉크 번짐
+    setTimeout(() => {
+      (seal as HTMLElement).style.filter = 'blur(0.4px)';
+      setTimeout(() => {
+        (seal as HTMLElement).style.filter = 'none';
+      }, 60);
+    }, 580);
+  }
+
+  // 판면 IntersectionObserver — 색인 활성화 + 진입 애니메이션
+  const panels = document.querySelectorAll<HTMLElement>('.panel');
+  const sidebarLinks = document.querySelectorAll<HTMLElement>('.index-link');
+  const mobileLinks = document.querySelectorAll<HTMLElement>('.index-mobile-link');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const code = (entry.target as HTMLElement).dataset.code;
+        if (entry.isIntersecting) {
+          // 애니메이션
+          const title = entry.target.querySelector('.panel-title');
+          const body = entry.target.querySelector('.panel-body');
+          const plate = entry.target.querySelector('.panel-plate');
+          title?.classList.add('visible');
+          body?.classList.add('visible');
+          plate?.classList.add('visible');
+
+          // 색인 활성화
+          sidebarLinks.forEach((link) => {
+            link.classList.toggle('active', link.dataset.code === code);
+          });
+          mobileLinks.forEach((link) => {
+            link.classList.toggle('active', link.dataset.code === code);
+          });
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  panels.forEach((panel) => observer.observe(panel));
+</script>

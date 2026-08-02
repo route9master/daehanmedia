@@ -1,0 +1,398 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import NextPage from '../components/NextPage.astro';
+
+const categories = ['검색', '노출', '영상', '판매', '재방문', '제작'];
+---
+<Base title="상담 문의 — 대한미디어그룹" description="어떤 자리가 맞을지 모르셔도 괜찮습니다. 무엇을 파는지부터 이야기해주세요.">
+  <Header />
+
+  <main>
+    <section class="contact">
+      <div class="contact-inner">
+        <!-- 좌측 -->
+        <div class="contact-left">
+          <p class="eyebrow contact-eyebrow">CONTACT</p>
+          <h1 class="display-2 contact-title">상담 문의</h1>
+          <div class="contact-body">
+            <p>어떤 자리가 맞을지 모르셔도 괜찮습니다.</p>
+            <p>무엇을 파는지, 누구에게 팔고 싶은지부터 이야기해주세요.</p>
+          </div>
+          <div class="contact-info">
+            <p>평일 10:00–17:00 접수 · 영업일 기준 1일 이내 회신</p>
+            <p>대표번호는 준비 중입니다. 현재는 이메일로 접수받습니다.</p>
+            <p><a href="mailto:dmg@daehanmedia.kr" class="contact-email">dmg@daehanmedia.kr</a></p>
+          </div>
+        </div>
+
+        <!-- 우측 폼 -->
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="field">
+            <label class="field-label" for="f-company">업체명 <span class="field-req">·</span></label>
+            <input type="text" id="f-company" name="company" class="field-input" required />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-name">담당자명 <span class="field-req">·</span></label>
+            <input type="text" id="f-name" name="name" class="field-input" required />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-email">이메일 <span class="field-req">·</span></label>
+            <input type="email" id="f-email" name="email" class="field-input" required />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-tel">연락처 <span class="field-req">·</span></label>
+            <input type="tel" id="f-tel" name="tel" class="field-input" required />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-url">사이트 / 스마트스토어 URL</label>
+            <input type="url" id="f-url" name="url" class="field-input" />
+          </div>
+
+          <div class="field">
+            <label class="field-label">관심 분류</label>
+            <div class="tag-group" id="tag-group">
+              {categories.map((cat) => (
+                <button type="button" class="tag" data-value={cat}>{cat}</button>
+              ))}
+            </div>
+            <input type="hidden" name="categories" id="f-categories" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-message">문의 내용 <span class="field-req">·</span></label>
+            <textarea id="f-message" name="message" class="field-input field-textarea" rows="4" required></textarea>
+          </div>
+
+          <div class="field field-agree">
+            <label class="agree-label">
+              <input type="checkbox" id="f-agree" name="agree" class="agree-checkbox" required />
+              <span class="agree-box" aria-hidden="true"></span>
+              <span class="agree-text">개인정보 수집·이용에 동의합니다 <a href="/privacy" class="agree-link">보기</a></span>
+            </label>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span class="cta-arrow">→</span>문의 보내기
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <NextPage href="/" label="홈으로" />
+  <Footer />
+</Base>
+
+<style>
+  .contact {
+    padding-top: 72px;
+  }
+
+  .contact-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: clamp(80px, 14vh, 200px) clamp(24px, 7vw, 120px) clamp(96px, 14vh, 200px);
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: clamp(48px, 6vw, 120px);
+    align-items: start;
+  }
+
+  .contact-eyebrow {
+    color: var(--ink-mute);
+    margin-bottom: 1rem;
+  }
+
+  .contact-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-body p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    word-break: keep-all;
+  }
+
+  .contact-info {
+    margin-top: clamp(48px, 6vh, 80px);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--paper-edge);
+  }
+
+  .contact-info p {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--ink-mute);
+    letter-spacing: -0.01em;
+  }
+
+  .contact-email {
+    color: var(--seal);
+    border-bottom: 1px solid var(--seal);
+    transition: opacity 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .contact-email:hover {
+    opacity: 0.7;
+  }
+
+  /* 폼 */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .field-label {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+  }
+
+  .field-label.error {
+    color: var(--seal);
+  }
+
+  .field-req {
+    color: var(--seal);
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .field-input {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--paper-edge);
+    padding: 12px 0;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    outline: none;
+    transition: border-color 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .field-input:focus {
+    border-bottom-color: var(--seal);
+  }
+
+  .field-textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.75;
+  }
+
+  .field-error {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--seal);
+    margin-top: 6px;
+  }
+
+  /* 태그 */
+  .tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tag {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: -0.01em;
+    color: var(--ink-mute);
+    background: none;
+    border: 1px solid var(--paper-edge);
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(.2,.7,.1,1),
+                color 180ms cubic-bezier(.2,.7,.1,1),
+                border-color 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .tag.selected {
+    background: var(--seal);
+    color: var(--paper);
+    border-color: var(--seal);
+  }
+
+  /* 동의 */
+  .agree-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .agree-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .agree-box {
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--paper-edge);
+    flex-shrink: 0;
+    transition: background-color 180ms cubic-bezier(.2,.7,.1,1),
+                border-color 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .agree-checkbox:checked + .agree-box {
+    background: var(--seal);
+    border-color: var(--seal);
+  }
+
+  .agree-checkbox:focus-visible + .agree-box {
+    outline: 2px solid var(--seal);
+    outline-offset: 3px;
+  }
+
+  .agree-text {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .agree-link {
+    color: var(--ink-mute);
+    border-bottom: 1px solid var(--paper-edge);
+    margin-left: 4px;
+    transition: color 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .agree-link:hover {
+    color: var(--ink);
+  }
+
+  /* 제출 */
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    background: none;
+    border: none;
+    padding: 0 0 4px;
+    border-bottom: 1px solid var(--ink);
+    cursor: pointer;
+    transition: border-color 180ms cubic-bezier(.2,.7,.1,1),
+                transform 180ms cubic-bezier(.2,.7,.1,1);
+    align-self: flex-start;
+  }
+
+  .submit-btn:hover {
+    border-bottom-color: var(--seal);
+    transform: translateX(4px);
+  }
+
+  .cta-arrow {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .contact-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .contact-info {
+      margin-top: 2rem;
+    }
+  }
+</style>
+
+<script>
+  import Lenis from 'lenis';
+
+  const lenis = new Lenis({ lerp: 0.085 });
+  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  // 태그 토글
+  const tags = document.querySelectorAll<HTMLButtonElement>('.tag');
+  const catInput = document.getElementById('f-categories') as HTMLInputElement;
+  tags.forEach((tag) => {
+    tag.addEventListener('click', () => {
+      tag.classList.toggle('selected');
+      const selected = Array.from(tags)
+        .filter((t) => t.classList.contains('selected'))
+        .map((t) => t.dataset.value);
+      catInput.value = selected.join(',');
+    });
+  });
+
+  // 검증 + 콘솔 출력
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // 기존 에러 초기화
+    form.querySelectorAll('.field-error').forEach((el) => el.remove());
+    form.querySelectorAll('.field-label.error').forEach((el) => el.classList.remove('error'));
+
+    let valid = true;
+    const required = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]');
+
+    required.forEach((input) => {
+      const field = input.closest('.field');
+      if (!field) return;
+
+      let empty = false;
+      if (input.type === 'checkbox') {
+        empty = !(input as HTMLInputElement).checked;
+      } else {
+        empty = !input.value.trim();
+      }
+
+      if (empty) {
+        valid = false;
+        const fieldLabel = field.querySelector('.field-label');
+        fieldLabel?.classList.add('error');
+
+        const msg = document.createElement('p');
+        msg.className = 'field-error';
+        msg.textContent = input.type === 'checkbox' ? '동의가 필요합니다' : '필수 항목입니다';
+        msg.style.cssText = 'font-family:var(--font-body);font-size:0.85rem;color:var(--seal);margin-top:6px';
+
+        if (input.type === 'checkbox') {
+          field.appendChild(msg);
+        } else {
+          input.after(msg);
+        }
+      }
+    });
+
+    if (!valid) return;
+
+    const data = new FormData(form);
+    const obj: Record<string, string> = {};
+    data.forEach((v, k) => { obj[k] = v as string; });
+    console.log('contact form data:', obj);
+  });
+</script>

@@ -1,0 +1,410 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const articles = [
+  { id: 'a1', num: '01', title: '개인정보의 수집 항목 및 수집 방법' },
+  { id: 'a2', num: '02', title: '개인정보의 처리 목적' },
+  { id: 'a3', num: '03', title: '개인정보의 보유 및 이용 기간' },
+  { id: 'a4', num: '04', title: '개인정보의 제3자 제공' },
+  { id: 'a5', num: '05', title: '개인정보 처리의 위탁' },
+  { id: 'a6', num: '06', title: '개인정보의 파기 절차 및 방법' },
+  { id: 'a7', num: '07', title: '정보주체의 권리와 행사 방법' },
+  { id: 'a8', num: '08', title: '쿠키의 설치·운영 및 거부' },
+  { id: 'a9', num: '09', title: '개인정보의 안전성 확보 조치' },
+  { id: 'a10', num: '10', title: '개인정보 보호책임자' },
+  { id: 'a11', num: '11', title: '권익침해 구제 방법' },
+  { id: 'a12', num: '12', title: '개인정보처리방침의 변경' },
+];
+---
+<Base title="개인정보처리방침 — 대한미디어그룹" description="대한미디어그룹 개인정보처리방침">
+  <Header />
+
+  <main>
+    <section class="privacy-header">
+      <div class="privacy-header-inner">
+        <p class="eyebrow prv-eyebrow">PRIVACY POLICY</p>
+        <h1 class="display-2 prv-title">개인정보처리방침</h1>
+        <div class="prv-rule"></div>
+      </div>
+    </section>
+
+    <section class="privacy-body">
+      <div class="privacy-body-inner">
+        <nav class="prv-toc" aria-label="조문 목차">
+          {articles.map((a) => (
+            <a href={`#${a.id}`} class="prv-toc-link" data-target={a.id}>
+              <span class="prv-toc-num">{a.num}</span> {a.title}
+            </a>
+          ))}
+        </nav>
+
+        <div class="prv-content">
+          <p class="prv-intro">대한미디어그룹(이하 "회사")은 「개인정보 보호법」 등 관련 법령을 준수하며, 이용자의 개인정보를 보호하기 위해 다음과 같이 개인정보처리방침을 수립·공개합니다.</p>
+
+          <article id="a1" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">01</span>개인정보의 수집 항목 및 수집 방법</h2>
+            <p>회사는 광고 상담 신청 처리를 위해 아래 항목을 수집합니다.</p>
+            <h3 class="prv-sub">필수 항목</h3>
+            <ul class="prv-list"><li>업체명, 담당자명, 이메일 주소, 연락처, 문의 내용</li></ul>
+            <h3 class="prv-sub">선택 항목</h3>
+            <ul class="prv-list"><li>웹사이트·스마트스토어 등 URL, 관심 서비스 영역</li></ul>
+            <h3 class="prv-sub">자동 수집 항목</h3>
+            <ul class="prv-list"><li>접속 IP 주소, 브라우저 및 기기 정보, 방문 일시, 쿠키</li></ul>
+            <h3 class="prv-sub">수집 방법</h3>
+            <ul class="prv-list">
+              <li>홈페이지 상담 신청 폼</li>
+              <li>이메일(dmg@daehanmedia.kr)을 통한 문의</li>
+              <li>서비스 이용 과정에서 자동 생성·수집</li>
+            </ul>
+          </article>
+
+          <article id="a2" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">02</span>개인정보의 처리 목적</h2>
+            <p>회사는 수집한 개인정보를 다음 목적으로만 처리하며, 목적이 변경되는 경우 사전 동의를 받습니다.</p>
+            <ol class="prv-ol">
+              <li>광고 상담 신청에 대한 회신 및 안내</li>
+              <li>서비스 제안, 견적 산출 및 계약 체결 관련 협의</li>
+              <li>계약 체결 시 서비스 제공, 대금 청구 및 정산</li>
+              <li>문의·불만 처리 및 분쟁 대응</li>
+            </ol>
+          </article>
+
+          <article id="a3" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">03</span>개인정보의 보유 및 이용 기간</h2>
+            <div class="prv-table">
+              <div class="prv-table-head"><span>구분</span><span>보유 기간</span></div>
+              <div class="prv-table-row"><span>상담 신청 후 계약이 체결되지 않은 경우</span><span>수집일로부터 1년 또는 삭제 요청 시 즉시</span></div>
+              <div class="prv-table-row"><span>계약이 체결된 경우</span><span>계약 종료일로부터 3년</span></div>
+              <div class="prv-table-row"><span>계약 및 대금 결제 관련 기록</span><span>5년 (전자상거래법)</span></div>
+              <div class="prv-table-row"><span>소비자 불만 또는 분쟁 처리 기록</span><span>3년 (전자상거래법)</span></div>
+              <div class="prv-table-row"><span>표시·광고에 관한 기록</span><span>6개월 (전자상거래법)</span></div>
+              <div class="prv-table-row"><span>웹사이트 방문 기록</span><span>3개월 (통신비밀보호법)</span></div>
+            </div>
+            <p>보유 기간이 경과하거나 처리 목적이 달성된 경우 지체 없이 파기합니다.</p>
+          </article>
+
+          <article id="a4" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">04</span>개인정보의 제3자 제공</h2>
+            <p>회사는 이용자의 개인정보를 제3자에게 제공하지 않습니다. 다만 아래의 경우는 예외로 합니다.</p>
+            <ol class="prv-ol">
+              <li>이용자가 사전에 동의한 경우</li>
+              <li>법령에 따라 수사기관 등이 적법한 절차로 요구하는 경우</li>
+            </ol>
+          </article>
+
+          <article id="a5" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">05</span>개인정보 처리의 위탁</h2>
+            <p>회사는 원활한 서비스 제공을 위해 다음과 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
+            <div class="prv-table">
+              <div class="prv-table-head prv-3col"><span>수탁자</span><span>위탁 업무</span><span>보유·이용 기간</span></div>
+              <div class="prv-table-row prv-3col"><span>주식회사 가비아</span><span>웹사이트 호스팅 및 서버 운영</span><span>위탁계약 종료 시까지</span></div>
+            </div>
+            <p>회사는 위탁계약 체결 시 개인정보의 안전한 관리에 관한 사항을 명시하고 수탁자를 감독합니다.</p>
+          </article>
+
+          <article id="a6" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">06</span>개인정보의 파기 절차 및 방법</h2>
+            <ul class="prv-list">
+              <li><strong>파기 절차</strong> — 보유 기간이 경과하거나 처리 목적이 달성된 개인정보는 내부 방침 및 관련 법령에 따라 별도 분리 보관 후 파기합니다.</li>
+              <li><strong>파기 방법</strong> — 전자적 파일은 복구 불가능한 기술적 방법으로 영구 삭제하며, 출력물은 분쇄하거나 소각합니다.</li>
+            </ul>
+          </article>
+
+          <article id="a7" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">07</span>정보주체의 권리와 행사 방법</h2>
+            <p>이용자는 언제든지 다음 권리를 행사할 수 있습니다.</p>
+            <ol class="prv-ol">
+              <li>개인정보 열람 요구</li>
+              <li>오류 등이 있을 경우 정정 요구</li>
+              <li>삭제 요구</li>
+              <li>처리 정지 요구</li>
+            </ol>
+            <p>권리 행사는 이메일(dmg@daehanmedia.kr) 또는 서면으로 요청할 수 있으며, 회사는 지체 없이 조치합니다. 법정대리인이나 위임받은 자를 통해서도 행사할 수 있습니다.</p>
+          </article>
+
+          <article id="a8" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">08</span>쿠키의 설치·운영 및 거부</h2>
+            <p>회사는 이용자에게 맞춤형 정보를 제공하기 위해 쿠키를 사용합니다.</p>
+            <ul class="prv-list">
+              <li><strong>사용 목적</strong> — 웹사이트의 기본 동작 유지 및 이용 환경 저장</li>
+              <li><strong>거부 방법</strong> — 웹브라우저 설정에서 쿠키 저장을 거부할 수 있습니다.</li>
+            </ul>
+            <p>쿠키 저장을 거부해도 홈페이지 이용에는 제한이 없습니다.</p>
+          </article>
+
+          <article id="a9" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">09</span>개인정보의 안전성 확보 조치</h2>
+            <ol class="prv-ol">
+              <li><strong>관리적 조치</strong> — 내부관리계획 수립·시행, 취급 직원 최소화 및 교육</li>
+              <li><strong>기술적 조치</strong> — 개인정보처리시스템 접근 권한 관리, 접속기록 보관, 암호화 저장 및 전송(SSL)</li>
+              <li><strong>물리적 조치</strong> — 자료 보관 장소의 접근 통제</li>
+            </ol>
+          </article>
+
+          <article id="a10" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">10</span>개인정보 보호책임자</h2>
+            <p>개인정보 처리에 관한 업무를 총괄하고, 관련 문의·불만·피해구제를 처리하기 위해 아래와 같이 책임자를 지정합니다.</p>
+            <div class="prv-info-block">
+              <p>개인정보 보호책임자: 대한미디어그룹 / <a href="mailto:dmg@daehanmedia.kr">dmg@daehanmedia.kr</a></p>
+              <p>서울특별시 금천구 디지털로9길 99, 스타밸리 1304-B호</p>
+            </div>
+          </article>
+
+          <article id="a11" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">11</span>권익침해 구제 방법</h2>
+            <p>개인정보 침해로 인한 상담이나 피해 구제가 필요한 경우 아래 기관에 문의할 수 있습니다.</p>
+            <div class="prv-table">
+              <div class="prv-table-head prv-3col"><span>기관</span><span>전화</span><span>홈페이지</span></div>
+              <div class="prv-table-row prv-3col"><span>개인정보 분쟁조정위원회</span><span>1833-6972</span><span>www.kopico.go.kr</span></div>
+              <div class="prv-table-row prv-3col"><span>개인정보침해 신고센터</span><span>(국번없이) 118</span><span>privacy.kisa.or.kr</span></div>
+              <div class="prv-table-row prv-3col"><span>대검찰청 사이버수사과</span><span>(국번없이) 1301</span><span>www.spo.go.kr</span></div>
+              <div class="prv-table-row prv-3col"><span>경찰청 사이버수사국</span><span>(국번없이) 182</span><span>ecrm.police.go.kr</span></div>
+            </div>
+          </article>
+
+          <article id="a12" class="prv-article">
+            <h2 class="prv-art-title"><span class="prv-art-num">12</span>개인정보처리방침의 변경</h2>
+            <p>이 개인정보처리방침은 2026년 8월 2일부터 적용됩니다. 법령·정책 또는 회사 내부 방침의 변경에 따라 내용이 추가·삭제·수정되는 경우, 변경 사항의 시행 7일 전부터 홈페이지 공지사항을 통해 고지합니다.</p>
+          </article>
+
+          <div class="prv-dates">
+            <div class="prv-dates-rule"></div>
+            <p><span class="prv-date-label">공고일자</span> <span class="prv-date-val">2026.08.02</span></p>
+            <p><span class="prv-date-label">시행일자</span> <span class="prv-date-val">2026.08.02</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .privacy-header { padding-top: 72px; }
+
+  .privacy-header-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: clamp(80px, 14vh, 200px) clamp(24px, 7vw, 120px) 0;
+  }
+
+  .prv-eyebrow { color: var(--ink-mute); margin-bottom: 1rem; }
+  .prv-title { margin-bottom: 2rem; }
+  .prv-rule { width: 100%; height: 1px; background: var(--paper-edge); }
+
+  .privacy-body-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 7vw, 120px) clamp(96px, 14vh, 200px);
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: clamp(32px, 4vw, 80px);
+  }
+
+  .prv-toc {
+    position: sticky;
+    top: 96px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 48px;
+    padding-right: 2rem;
+    border-right: 1px solid var(--paper-edge);
+    height: fit-content;
+  }
+
+  .prv-toc-link {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--ink-mute);
+    text-decoration: none;
+    padding: 4px 0;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    transition: color 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .prv-toc-link.active { color: var(--seal); }
+  .prv-toc-link.active::before { content: '▸'; margin-right: 4px; }
+
+  .prv-toc-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    margin-right: 4px;
+  }
+
+  .prv-content { max-width: 720px; padding-top: 48px; }
+
+  .prv-intro {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+
+  .prv-article { padding-top: 64px; }
+
+  .prv-art-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    margin-bottom: 1.25rem;
+  }
+
+  .prv-art-num {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+    margin-right: 10px;
+  }
+
+  .prv-article p, .prv-list li, .prv-ol li {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .prv-article p { margin-bottom: 0.75rem; }
+
+  .prv-sub {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prv-list, .prv-ol { padding-left: 0; margin-bottom: 0.75rem; list-style: none; }
+
+  .prv-list li { padding-left: 1rem; position: relative; }
+  .prv-list li::before { content: '–'; position: absolute; left: 0; color: var(--ink-mute); }
+
+  .prv-ol { counter-reset: ol-counter; }
+  .prv-ol li { counter-increment: ol-counter; padding-left: 1.5rem; position: relative; }
+  .prv-ol li::before {
+    content: counter(ol-counter);
+    position: absolute;
+    left: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+  }
+
+  .prv-list li strong, .prv-ol li strong { font-weight: 600; color: var(--ink); }
+
+  .prv-table { margin: 1rem 0 1.25rem; }
+
+  .prv-table-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .prv-table-head.prv-3col { grid-template-columns: 1fr 1fr 1fr; }
+
+  .prv-table-head span {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--ink-mute);
+  }
+
+  .prv-table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--paper-edge);
+  }
+
+  .prv-table-row.prv-3col { grid-template-columns: 1fr 1fr 1fr; }
+
+  .prv-table-row span {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .prv-info-block {
+    border-left: 2px solid var(--seal);
+    padding-left: 1rem;
+    margin: 1rem 0;
+  }
+
+  .prv-info-block p { font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .prv-info-block a { color: var(--seal); border-bottom: 1px solid var(--seal); }
+
+  .prv-dates { margin-top: 80px; }
+
+  .prv-dates-rule { width: 220px; height: 1px; background: var(--paper-edge); margin-bottom: 1.5rem; }
+  .prv-dates p { margin-bottom: 0.25rem; }
+
+  .prv-date-label {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--ink-mute);
+    margin-right: 12px;
+  }
+
+  .prv-date-val {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+  }
+
+  @media (max-width: 768px) {
+    .privacy-body-inner { grid-template-columns: 1fr; }
+    .prv-toc { display: none; }
+    .prv-table-head, .prv-table-row { grid-template-columns: 1fr; gap: 0.25rem; }
+    .prv-table-head.prv-3col, .prv-table-row.prv-3col { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  import Lenis from 'lenis';
+
+  const lenis = new Lenis({ lerp: 0.085 });
+  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  const tocLinks = document.querySelectorAll<HTMLElement>('.prv-toc-link');
+  const artEls = document.querySelectorAll<HTMLElement>('.prv-article');
+
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          tocLinks.forEach((link) => {
+            link.classList.toggle('active', link.dataset.target === id);
+          });
+        }
+      });
+    },
+    { threshold: 0.2, rootMargin: '-80px 0px -60% 0px' }
+  );
+  artEls.forEach((el) => obs.observe(el));
+</script>

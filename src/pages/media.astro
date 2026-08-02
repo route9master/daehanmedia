@@ -1,0 +1,361 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import NextPage from '../components/NextPage.astro';
+import { media } from '../data/media';
+---
+<Base title="취급 지면 — 대한미디어그룹" description="네이버·카카오·유튜브·구글·당근·토스·틱톡·쿠팡. 각 지면의 규모와 쓰임을 정리했습니다.">
+  <Header />
+
+  <main>
+    <!-- 헤더 블록 -->
+    <section class="media-header">
+      <div class="media-header-inner">
+        <div class="media-header-text">
+          <p class="eyebrow media-eyebrow">MEDIA INVENTORY</p>
+          <h1 class="display-2 media-title">우리가 다루는 지면</h1>
+          <div class="media-body-row">
+            <div class="media-body">
+              <p>광고는 자리에서 시작합니다.</p>
+              <p>각 자리가 얼마나 크고, 누가 보고, 무엇에 어울리는지 정리했습니다.</p>
+              <p>모든 수치는 매체 공개 자료 기준이며 기준 시점을 함께 적었습니다.</p>
+            </div>
+            <div class="media-seal" id="media-seal" aria-hidden="true">
+              <img src="/logo/dmg-symbol.svg" alt="" width="120" height="120" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 지면 표 -->
+    <section class="media-table-section">
+      <div class="media-table-wrap">
+        <!-- 데스크톱 표 헤더 -->
+        <div class="table-head">
+          <span class="th-code data">코드</span>
+          <span class="th-name">지면</span>
+          <span class="th-scale">규모</span>
+          <span class="th-audience">주 사용층</span>
+          <span class="th-purpose">어울리는 목적</span>
+        </div>
+
+        <!-- 행 -->
+        <div class="table-body" id="table-body">
+          {media.map((item) => (
+            <div class="table-row" data-code={item.code}>
+              <span class="td-code data">{item.code}</span>
+              <span class="td-name">{item.name}</span>
+              <span class={item.numeric ? 'td-scale' : 'td-scale-desc'}>
+                {item.numeric ? (
+                  <><span class="scale-num">{item.scaleNum}</span><span class="scale-unit">{item.scaleUnit}</span></>
+                ) : (
+                  <span>{item.scale}</span>
+                )}
+              </span>
+              <span class="td-audience">{item.audience}</span>
+              <span class="td-purpose">{item.purpose}</span>
+              <span class="td-scale-full">{item.scale}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- 출처 고지 -->
+        <div class="table-footer">
+          <div class="table-footer-rule"></div>
+          <p>모든 수치는 각 매체가 공개한 자료를 기준으로 정리했습니다.</p>
+          <p>매체 데이터는 수시로 변경되므로 정기적으로 갱신합니다.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <NextPage href="/services" label="광고 도감" />
+  <Footer />
+</Base>
+
+<style>
+  /* 헤더 */
+  .media-header {
+    padding-top: 72px;
+  }
+
+  .media-header-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: clamp(80px, 14vh, 200px) clamp(24px, 7vw, 120px) clamp(48px, 6vh, 80px);
+  }
+
+  .media-body-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 3rem;
+  }
+
+  .media-eyebrow {
+    color: var(--ink-mute);
+    margin-bottom: 1rem;
+  }
+
+  .media-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .media-body p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+    color: var(--ink-mute);
+  }
+
+  .media-seal {
+    flex-shrink: 0;
+    opacity: 0;
+    transform: scale(1.14) rotate(2deg);
+    pointer-events: none;
+  }
+
+  .media-seal.stamped {
+    opacity: 0.55;
+    transform: scale(1) rotate(2deg);
+    transition: opacity 180ms cubic-bezier(.15,1.1,.3,1),
+                transform 180ms cubic-bezier(.15,1.1,.3,1);
+  }
+
+  .media-seal img {
+    width: 120px;
+    height: 120px;
+    filter: brightness(0) saturate(100%) invert(18%) sepia(80%) saturate(2800%) hue-rotate(348deg) brightness(85%) contrast(95%);
+  }
+
+  /* 표 섹션 */
+  .media-table-section {
+    padding-bottom: clamp(96px, 14vh, 200px);
+  }
+
+  .media-table-wrap {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 7vw, 120px);
+  }
+
+  /* 표 헤더 */
+  .table-head {
+    display: grid;
+    grid-template-columns: 80px 1fr 1.2fr 140px 1fr;
+    gap: 1rem;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .table-head span {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--ink-mute);
+  }
+
+  .th-code {
+    font-family: var(--font-mono) !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  /* 행 */
+  .table-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 1.2fr 140px 1fr;
+    gap: 1rem;
+    align-items: center;
+    min-height: 96px;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--paper-edge);
+    transition: background-color 180ms cubic-bezier(.2,.7,.1,1),
+                transform 180ms cubic-bezier(.2,.7,.1,1);
+    opacity: 0;
+  }
+
+  .table-row.visible {
+    opacity: 1;
+    transition: opacity 220ms cubic-bezier(.2,.7,.1,1),
+                background-color 180ms cubic-bezier(.2,.7,.1,1),
+                transform 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .table-row:hover {
+    background: var(--seal-wash);
+    transform: translateX(4px);
+  }
+
+  .table-row:hover .td-code {
+    color: var(--seal);
+  }
+
+  .td-code {
+    color: var(--ink-mute);
+    transition: color 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .td-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .td-scale {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+  }
+
+  .scale-num {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    letter-spacing: 0.02em;
+    color: var(--brass);
+    line-height: 1;
+  }
+
+  .scale-unit {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--brass);
+  }
+
+  .td-scale-desc {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .td-audience,
+  .td-purpose {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--ink-mute);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  .td-scale-full {
+    display: none;
+  }
+
+  /* 출처 고지 */
+  .table-footer {
+    margin-top: clamp(48px, 6vh, 80px);
+  }
+
+  .table-footer-rule {
+    width: 100%;
+    height: 1px;
+    background: var(--paper-edge);
+    margin-bottom: 1.5rem;
+  }
+
+  .table-footer p {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--ink-mute);
+    letter-spacing: -0.01em;
+  }
+
+  /* 모바일: 카드 전환 */
+  @media (max-width: 768px) {
+    .media-header-inner {
+      flex-direction: column;
+    }
+
+    .media-seal {
+      align-self: flex-end;
+    }
+
+    .table-head {
+      display: none;
+    }
+
+    .table-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1.5rem 0;
+      align-items: flex-start;
+    }
+
+    .td-scale {
+      display: none;
+    }
+
+    .td-audience,
+    .td-purpose {
+      font-size: 0.875rem;
+    }
+
+    .td-scale-full {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--brass);
+      letter-spacing: 0.02em;
+    }
+  }
+</style>
+
+<script>
+  import Lenis from 'lenis';
+
+  const lenis = new Lenis({ lerp: 0.085 });
+  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  // 검인
+  const seal = document.getElementById('media-seal');
+  if (seal) {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            (e.target as HTMLElement).classList.add('stamped');
+            setTimeout(() => {
+              (e.target as HTMLElement).style.filter = 'blur(0.4px)';
+              setTimeout(() => { (e.target as HTMLElement).style.filter = 'none'; }, 60);
+            }, 180);
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    obs.observe(seal);
+  }
+
+  // 행 순차 등장
+  const rows = document.querySelectorAll<HTMLElement>('.table-row');
+  const tableObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const allRows = Array.from(rows);
+          const idx = allRows.indexOf(e.target as HTMLElement);
+          allRows.forEach((row, i) => {
+            if (i <= idx && !row.classList.contains('visible')) {
+              setTimeout(() => row.classList.add('visible'), i * 60);
+            }
+          });
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  rows.forEach((row) => tableObs.observe(row));
+</script>

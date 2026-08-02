@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="페이지를 찾을 수 없습니다 — 대한미디어그룹">
+  <Header />
+
+  <main>
+    <section class="not-found">
+      <div class="not-found-watermark" aria-hidden="true">
+        <img src="/logo/dmg-symbol.svg" alt="" width="320" height="320" />
+      </div>
+      <div class="not-found-inner">
+        <p class="eyebrow not-found-eyebrow">404</p>
+        <h1 class="display-2 not-found-title">이 지면은 비어 있습니다</h1>
+        <p class="not-found-body">찾으시는 페이지가 없습니다.</p>
+        <a href="/" class="not-found-link"><span class="not-found-arrow">→</span>홈으로 돌아가기</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .not-found {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding-top: 72px;
+    overflow: hidden;
+  }
+
+  .not-found-watermark {
+    position: absolute;
+    right: clamp(24px, 7vw, 120px);
+    bottom: clamp(32px, 6vh, 80px);
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .not-found-watermark img {
+    display: block;
+    width: clamp(200px, 28vw, 320px);
+    height: auto;
+  }
+
+  .not-found-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: clamp(80px, 14vh, 200px) clamp(24px, 7vw, 120px);
+    width: 100%;
+  }
+
+  .not-found-eyebrow { color: var(--ink-mute); margin-bottom: 1.5rem; }
+  .not-found-title { margin-bottom: 1.5rem; }
+
+  .not-found-body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink-mute);
+    margin-bottom: 3rem;
+  }
+
+  .not-found-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0 0 4px;
+    border-bottom: 1px solid var(--ink);
+    transition: border-color 180ms cubic-bezier(.2,.7,.1,1),
+                transform 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .not-found-link:hover {
+    border-bottom-color: var(--seal);
+    transform: translateX(4px);
+  }
+
+  .not-found-arrow {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+</style>

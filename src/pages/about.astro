@@ -1,0 +1,487 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import NextPage from '../components/NextPage.astro';
+---
+<Base title="회사 소개 — 대한미디어그룹" description="대한미디어그룹은 75개 광고 상품 중 지금 필요한 자리를 고르는 광고대행사입니다.">
+  <Header />
+
+  <main>
+    <!-- 블록 1 — 대표 인사말 -->
+    <section class="greeting" data-header-theme="dark">
+      <div class="greeting-watermark" aria-hidden="true">
+        <img src="/logo/dmg-symbol-white.svg" alt="" width="480" height="480" />
+      </div>
+      <div class="greeting-inner">
+        <p class="eyebrow greeting-eyebrow">ABOUT</p>
+        <div class="greeting-body" id="greeting-body">
+          <p class="greeting-p">좋은 제품이 안 팔리는 이유는 대부분 제품에 있지 않습니다.<br/>그것이 필요한 사람이 아직 그것을 보지 못했을 뿐입니다.</p>
+          <p class="greeting-p">광고는 그 거리를 좁히는 일입니다.<br/>어떤 화면에, 어떤 순간에, 어떤 얼굴로 나타날지를 정하는 일.<br/>대한미디어그룹은 그 결정을 함께하기 위해 만들어진 회사입니다.</p>
+          <p class="greeting-p">네이버와 유튜브부터 카카오톡, 인스타그램, 당근까지<br/>사람들이 하루를 보내는 거의 모든 자리에 광고를 실을 수 있습니다.<br/>다만 중요한 건 전부 하는 것이 아니라, 지금 필요한 자리를 고르는 일입니다.</p>
+          <p class="greeting-p">당신의 브랜드가 있어야 할 자리를 찾아드리겠습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 블록 2 — 사명과 심볼 -->
+    <section class="mission">
+      <div class="mission-inner">
+        <div class="mission-symbol" id="mission-seal">
+          <img src="/logo/dmg-symbol.svg" alt="월계관 심볼" width="320" height="320" />
+        </div>
+        <div class="mission-text">
+          <p class="mission-p"><strong class="mission-em">대한(大韓)</strong> — 국내 주요 지면을 빠짐없이 다룬다는 뜻입니다.</p>
+          <p class="mission-p"><strong class="mission-em">미디어그룹</strong> — 특정 플랫폼의 대리점이 아니라, 매체 전체를 놓고 고르는 자리에 선다는 뜻입니다.</p>
+          <p class="mission-p">심볼은 <strong class="mission-em">월계관</strong>입니다.<br/>월계관은 결과에 주어지는 표식이면서, 동시에 문서에 찍히는 <strong class="mission-em">검인(檢印)</strong>이기도 합니다.<br/>광고는 심의를 거치고, 승인을 받고, 확인이 끝난 뒤에야 세상에 나갑니다.<br/>우리가 하는 일이 정확히 그것입니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 블록 3 — 파트로 나뉘어 움직입니다 -->
+    <section class="parts">
+      <div class="parts-inner">
+        <div class="parts-intro">
+          <p class="eyebrow parts-eyebrow">STRUCTURE</p>
+          <h2 class="display-2 parts-title">파트로 나뉘어 움직입니다</h2>
+          <p class="parts-sub">한 사람이 처음부터 끝까지 떠안지 않습니다.<br/>기획, 운영, 분석, 제작이 각자의 자리에서 맡은 일을 합니다.</p>
+        </div>
+        <div class="parts-grid">
+          <div class="parts-item">
+            <span class="parts-num data">01</span>
+            <h3 class="parts-name">기획</h3>
+            <p class="parts-desc">무엇을 알릴지, 어디에 실을지 정합니다</p>
+          </div>
+          <div class="parts-divider"></div>
+          <div class="parts-item">
+            <span class="parts-num data">02</span>
+            <h3 class="parts-name">운영</h3>
+            <p class="parts-desc">광고를 올리고, 매일 들여다보고, 손봅니다</p>
+          </div>
+          <div class="parts-divider"></div>
+          <div class="parts-item">
+            <span class="parts-num data">03</span>
+            <h3 class="parts-name">분석</h3>
+            <p class="parts-desc">반응이 오는 자리와 그렇지 않은 자리를 가려냅니다</p>
+          </div>
+          <div class="parts-divider"></div>
+          <div class="parts-item">
+            <span class="parts-num data">04</span>
+            <h3 class="parts-name">제작</h3>
+            <p class="parts-desc">사람들이 실제로 보게 될 것을 만듭니다</p>
+          </div>
+        </div>
+        <p class="parts-closing">파트가 서로의 판단을 이어받기 때문에, 광고가 한 사람의 감에 맡겨지지 않습니다.</p>
+      </div>
+    </section>
+
+    <!-- 블록 4 — 회사 정보 -->
+    <section class="info">
+      <div class="info-inner">
+        <p class="eyebrow info-eyebrow">COMPANY</p>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">상호</span>
+            <span class="info-val">대한미디어그룹</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">사업자등록번호</span>
+            <span class="info-val">707-25-02102</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">통신판매업신고</span>
+            <span class="info-val info-pending">준비중</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">주소</span>
+            <span class="info-val">서울특별시 금천구 디지털로9길 99, 스타밸리 1304-B호</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">대표번호</span>
+            <span class="info-val info-pending">준비중</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">이메일</span>
+            <span class="info-val"><a href="mailto:dmg@daehanmedia.kr">dmg@daehanmedia.kr</a></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">운영시간</span>
+            <span class="info-val">평일 10:00 – 17:00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <NextPage href="/media" label="취급 지면" />
+  <Footer />
+</Base>
+
+<style>
+  /* ===== 블록 1 — 대표 인사말 ===== */
+  .greeting {
+    position: relative;
+    overflow: hidden;
+    background: var(--ink-deep);
+    color: var(--paper);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 72px;
+  }
+
+  .greeting-watermark {
+    position: absolute;
+    right: clamp(24px, 7vw, 120px);
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .greeting-watermark img {
+    display: block;
+    width: clamp(280px, 36vw, 480px);
+    height: auto;
+  }
+
+  .greeting-inner {
+    position: relative;
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: clamp(80px, 14vh, 200px) clamp(24px, 7vw, 120px);
+    width: 100%;
+  }
+
+  .greeting-eyebrow {
+    color: var(--ink-mute);
+    margin-bottom: 3rem;
+  }
+
+  .greeting-body {
+    max-width: 780px;
+    margin-left: clamp(0px, 6vw, 100px);
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  .greeting-p {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    line-height: 2.0;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    word-break: keep-all;
+    text-wrap: pretty;
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .greeting-p.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 260ms cubic-bezier(.2,.7,.1,1),
+                transform 260ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  /* ===== 블록 2 — 사명과 심볼 ===== */
+  .mission {
+    background: var(--paper);
+    padding: clamp(96px, 14vh, 200px) 0;
+  }
+
+  .mission-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 7vw, 120px);
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: clamp(48px, 6vw, 120px);
+    align-items: center;
+  }
+
+  .mission-symbol {
+    opacity: 0;
+    transform: scale(1.14) rotate(-3deg);
+  }
+
+  .mission-symbol.stamped {
+    opacity: 1;
+    transform: scale(1) rotate(-3deg);
+    transition: opacity 180ms cubic-bezier(.15,1.1,.3,1),
+                transform 180ms cubic-bezier(.15,1.1,.3,1);
+  }
+
+  .mission-symbol img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .mission-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .mission-p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .mission-em {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--seal);
+  }
+
+  /* ===== 블록 3 — 파트 ===== */
+  .parts {
+    background: var(--paper-warm);
+    padding: clamp(96px, 14vh, 200px) 0;
+  }
+
+  .parts-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 7vw, 120px);
+  }
+
+  .parts-intro {
+    margin-bottom: clamp(48px, 6vh, 80px);
+  }
+
+  .parts-eyebrow {
+    color: var(--ink-mute);
+    margin-bottom: 1rem;
+  }
+
+  .parts-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .parts-sub {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink-mute);
+    letter-spacing: -0.01em;
+  }
+
+  .parts-grid {
+    display: flex;
+    gap: 0;
+  }
+
+  .parts-item {
+    flex: 1;
+    padding: 0 clamp(16px, 2vw, 32px);
+  }
+
+  .parts-item:first-child {
+    padding-left: 0;
+  }
+
+  .parts-item:last-child {
+    padding-right: 0;
+  }
+
+  .parts-divider {
+    width: 1px;
+    background: var(--paper-edge);
+    flex-shrink: 0;
+  }
+
+  .parts-num {
+    display: block;
+    color: var(--ink-mute);
+    margin-bottom: 1rem;
+  }
+
+  .parts-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+
+  .parts-desc {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .parts-closing {
+    margin-top: clamp(48px, 6vh, 80px);
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink-mute);
+    letter-spacing: -0.01em;
+  }
+
+  /* ===== 블록 4 — 회사 정보 ===== */
+  .info {
+    background: var(--paper);
+    padding: clamp(96px, 14vh, 200px) 0;
+  }
+
+  .info-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 7vw, 120px);
+  }
+
+  .info-eyebrow {
+    color: var(--ink-mute);
+    margin-bottom: clamp(32px, 4vh, 56px);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 3rem;
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .info-label {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--ink-mute);
+  }
+
+  .info-val {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .info-val a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--paper-edge);
+    transition: border-color 200ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .info-val a:hover {
+    border-color: var(--ink);
+  }
+
+  .info-pending {
+    color: var(--ink-mute);
+  }
+
+  /* ===== 모바일 ===== */
+  @media (max-width: 768px) {
+    .greeting-p {
+      font-size: 1.25rem;
+    }
+
+    .greeting-p br {
+      display: none;
+    }
+
+    .mission-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .mission-symbol img {
+      width: 200px;
+    }
+
+    .parts-grid {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .parts-divider {
+      width: 100%;
+      height: 1px;
+      margin: 1.5rem 0;
+    }
+
+    .parts-item {
+      padding: 0;
+    }
+
+    .parts-sub br {
+      display: none;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  import Lenis from 'lenis';
+
+  const lenis = new Lenis({ lerp: 0.085 });
+  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  // 블록 1 — 문단 순차 등장
+  const greetingBody = document.getElementById('greeting-body');
+  if (greetingBody) {
+    const greetingObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const ps = entry.target.querySelectorAll<HTMLElement>('.greeting-p');
+            ps.forEach((p, i) => {
+              setTimeout(() => p.classList.add('visible'), i * 90);
+            });
+            greetingObs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    greetingObs.observe(greetingBody);
+  }
+
+  // 블록 2 — 검인 효과
+  const sealEl = document.getElementById('mission-seal');
+  if (sealEl) {
+    const sealObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).classList.add('stamped');
+            setTimeout(() => {
+              (entry.target as HTMLElement).style.filter = 'blur(0.4px)';
+              setTimeout(() => {
+                (entry.target as HTMLElement).style.filter = 'none';
+              }, 60);
+            }, 180);
+            sealObs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.55 }
+    );
+    sealObs.observe(sealEl);
+  }
+</script>

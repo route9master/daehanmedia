@@ -1,0 +1,71 @@
+---
+interface Props {
+  href: string;
+  label: string;
+}
+const { href, label } = Astro.props;
+---
+
+<a href={href} class="next-page">
+  <div class="next-page-inner">
+    <span class="next-page-eyebrow">NEXT</span>
+    <div class="next-page-row">
+      <span class="next-page-label">{label}</span>
+      <span class="next-page-arrow">→</span>
+    </div>
+  </div>
+</a>
+
+<style>
+  .next-page {
+    display: block;
+    text-decoration: none;
+    border-top: 1px solid var(--paper-edge);
+    transition: transform 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .next-page:hover {
+    transform: translateX(8px);
+  }
+
+  .next-page:hover .next-page-label {
+    color: var(--seal);
+  }
+
+  .next-page-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: clamp(48px, 8vh, 96px) clamp(24px, 7vw, 120px);
+  }
+
+  .next-page-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .next-page-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .next-page-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.1;
+    transition: color 180ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .next-page-arrow {
+    font-family: var(--font-mono);
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    color: var(--ink-mute);
+  }
+</style>

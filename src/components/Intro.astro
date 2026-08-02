@@ -1,0 +1,123 @@
+---
+---
+
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-bg" id="intro-bg">
+    <div class="intro-center">
+      <div class="intro-symbol" id="intro-symbol">
+        <img src="/logo/dmg-symbol.svg" alt="" width="80" height="80" class="intro-symbol-img" />
+      </div>
+      <div class="intro-wordmark" id="intro-wordmark">
+        <img src="/logo/dmg-wordmark-white.svg" alt="" width="120" height="20" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .intro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  .intro.done { display: none; }
+
+  .intro-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--ink-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .intro-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .intro-symbol { opacity: 0; }
+
+  .intro-symbol-img {
+    display: block;
+    width: 80px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    clip-path: inset(100% 0 0 0);
+  }
+
+  .intro-wordmark { opacity: 0; }
+
+  .intro-wordmark img {
+    display: block;
+    width: 120px;
+    height: auto;
+  }
+</style>
+
+<script>
+  import { animate } from 'motion';
+
+  const intro = document.getElementById('intro');
+  const bg = document.getElementById('intro-bg');
+  const symbol = document.getElementById('intro-symbol');
+  const symbolImg = symbol?.querySelector('.intro-symbol-img') as HTMLElement;
+  const wordmark = document.getElementById('intro-wordmark');
+
+  const isHome = window.location.pathname === '/';
+  const seen = sessionStorage.getItem('intro-seen');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!intro || !bg || !symbol || !symbolImg || !wordmark || !isHome || seen || prefersReduced) {
+    intro?.classList.add('done');
+  } else {
+    sessionStorage.setItem('intro-seen', '1');
+    document.body.style.overflow = 'hidden';
+
+    symbol.style.opacity = '1';
+
+    // 심볼 아래→위 reveal (1.2초)
+    animate(
+      symbolImg,
+      { clipPath: ['inset(100% 0 0 0)', 'inset(0% 0 0 0)'] },
+      { duration: 1.2, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' }
+    );
+
+    // 검인 효과 (1.2초 후, 180ms)
+    setTimeout(() => {
+      symbolImg.style.filter = 'brightness(0) saturate(100%) invert(18%) sepia(80%) saturate(2800%) hue-rotate(348deg) brightness(85%) contrast(95%)';
+      animate(
+        symbolImg,
+        { scale: [1.08, 1], rotate: ['-3deg', '0deg'] },
+        { duration: 0.18, easing: [0.15, 1.1, 0.3, 1], fill: 'forwards' }
+      );
+      setTimeout(() => {
+        symbolImg.style.filter += ' blur(0.4px)';
+        setTimeout(() => {
+          symbolImg.style.filter = 'brightness(0) saturate(100%) invert(18%) sepia(80%) saturate(2800%) hue-rotate(348deg) brightness(85%) contrast(95%)';
+        }, 60);
+      }, 180);
+    }, 1200);
+
+    // 워드마크 (1.5초)
+    setTimeout(() => {
+      animate(wordmark, { opacity: [0, 1] }, { duration: 0.26, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' });
+    }, 1500);
+
+    // 먹지 걷힘 (1.76초 후, 420ms)
+    setTimeout(() => {
+      animate(
+        bg,
+        { transform: ['translateY(0)', 'translateY(-100%)'] },
+        { duration: 0.42, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' }
+      ).then(() => {
+        intro.classList.add('done');
+        document.body.style.overflow = '';
+      });
+    }, 1760);
+  }
+</script>

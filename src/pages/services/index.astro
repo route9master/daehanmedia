@@ -1,0 +1,143 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import NextPage from '../../components/NextPage.astro';
+import { categories } from '../../data/services';
+---
+<Base title="광고 도감 — 대한미디어그룹" description="검색·노출·영상·판매·재방문·제작. 75개 광고 상품을 도감처럼 펼칩니다.">
+  <Header />
+
+  <main>
+    <section class="hub">
+      <div class="hub-inner">
+        <p class="eyebrow hub-eyebrow">SERVICES</p>
+        <h1 class="display-2 hub-title">광고 도감</h1>
+        <p class="hub-sub">75개 광고 상품을 6개 분류로 나누었습니다.</p>
+
+        <nav class="hub-list" aria-label="서비스 분류">
+          {categories.map((cat) => (
+            <a href={`/services/${cat.slug}`} class="hub-item">
+              <div class="hub-item-head">
+                <span class="hub-item-en" style="font-family:var(--font-rd-10);">{cat.en}</span>
+                <span class="hub-item-count data">{cat.count}</span>
+              </div>
+              <div class="hub-item-body">
+                <span class="hub-item-code data">{cat.code}</span>
+                <span class="hub-item-ko">{cat.ko}</span>
+                <span class="hub-item-divider">—</span>
+                <span class="hub-item-tagline">{cat.tagline}</span>
+              </div>
+            </a>
+          ))}
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <NextPage href="/process" label="진행 순서" />
+  <Footer />
+</Base>
+
+<style>
+  .hub {
+    min-height: 100vh;
+    padding-top: 72px;
+  }
+
+  .hub-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: clamp(80px, 14vh, 200px) clamp(24px, 7vw, 120px);
+  }
+
+  .hub-eyebrow {
+    color: var(--ink-mute);
+    margin-bottom: 1.5rem;
+  }
+
+  .hub-title {
+    margin-bottom: 1rem;
+  }
+
+  .hub-sub {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink-mute);
+    margin-bottom: clamp(64px, 8vh, 120px);
+  }
+
+  .hub-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hub-item {
+    display: block;
+    padding: clamp(24px, 3vh, 40px) 0;
+    border-top: 1px solid var(--paper-edge);
+    text-decoration: none;
+    transition: background-color 220ms cubic-bezier(.2,.7,.1,1);
+  }
+
+  .hub-item:last-child {
+    border-bottom: 1px solid var(--paper-edge);
+  }
+
+  .hub-item:hover {
+    background: var(--paper-warm);
+  }
+
+  .hub-item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+
+  .hub-item-en {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+  }
+
+  .hub-item-count {
+    color: var(--ink-mute);
+  }
+
+  .hub-item-body {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .hub-item-code {
+    color: var(--ink-mute);
+  }
+
+  .hub-item-ko {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--ink);
+  }
+
+  .hub-item-divider {
+    color: var(--paper-edge);
+  }
+
+  .hub-item-tagline {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--ink-mute);
+  }
+</style>
+
+<script>
+  import Lenis from 'lenis';
+  const lenis = new Lenis({ lerp: 0.085 });
+  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+</script>
