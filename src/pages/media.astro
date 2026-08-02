@@ -314,22 +314,32 @@ import { media } from '../data/media';
 <script>
   import Lenis from 'lenis';
 
-  const lenis = new Lenis({ lerp: 0.085 });
-  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-  // 검인
+  if (!isMobile) {
+    const lenis = new Lenis({ lerp: 0.085 });
+    function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
+
+  // 검인 — 모바일: 회전 없이 opacity만
   const seal = document.getElementById('media-seal');
   if (seal) {
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            (e.target as HTMLElement).classList.add('stamped');
-            setTimeout(() => {
-              (e.target as HTMLElement).style.filter = 'blur(0.4px)';
-              setTimeout(() => { (e.target as HTMLElement).style.filter = 'none'; }, 60);
-            }, 180);
+            if (isMobile) {
+              (e.target as HTMLElement).style.opacity = '0.55';
+              (e.target as HTMLElement).style.transform = 'none';
+              (e.target as HTMLElement).style.transition = 'opacity 180ms cubic-bezier(.2,.7,.1,1)';
+            } else {
+              (e.target as HTMLElement).classList.add('stamped');
+              setTimeout(() => {
+                (e.target as HTMLElement).style.filter = 'blur(0.4px)';
+                setTimeout(() => { (e.target as HTMLElement).style.filter = 'none'; }, 60);
+              }, 180);
+            }
             obs.unobserve(e.target);
           }
         });

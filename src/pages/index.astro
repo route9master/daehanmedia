@@ -523,9 +523,10 @@ const topMedia = media.slice(0, 6);
     .hero-index { display: none; }
     .hero { min-height: 85vh; padding-top: 100px; }
     .hero-body br { display: none; }
+    .hero-title { font-size: clamp(2.6rem, 10vw, 3.4rem); }
 
     .excerpt-grid { grid-template-columns: 1fr; }
-    .excerpt-plate { max-width: 180px; }
+    .excerpt-plate { display: none; }
 
     .cats-row {
       grid-template-columns: 40px 1fr 60px;
@@ -539,6 +540,8 @@ const topMedia = media.slice(0, 6);
       row-gap: 32px;
     }
 
+    .ways-divider { margin: 40px 0; }
+
     .cta-heading br { display: none; }
   }
 </style>
@@ -547,28 +550,42 @@ const topMedia = media.slice(0, 6);
   import Lenis from 'lenis';
   import { animate } from 'motion';
 
-  const lenis = new Lenis({ lerp: 0.085 });
-  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-  // 히어로 스캔
-  const scan = document.getElementById('hero-scan');
-  if (scan) {
-    animate(scan, { scaleY: [1, 0] }, { duration: 0.9, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' });
+  if (!isMobile) {
+    const lenis = new Lenis({ lerp: 0.085 });
+    function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
   }
 
-  // 분류 검인
+  // 히어로 스캔 — 모바일 제거
+  const scan = document.getElementById('hero-scan');
+  if (scan) {
+    if (isMobile) {
+      scan.style.display = 'none';
+    } else {
+      animate(scan, { scaleY: [1, 0] }, { duration: 0.9, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' });
+    }
+  }
+
+  // 분류 검인 — 모바일: 회전 없이 opacity만
   const catsSeal = document.getElementById('cats-seal');
   if (catsSeal) {
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            (e.target as HTMLElement).classList.add('stamped');
-            setTimeout(() => {
-              (e.target as HTMLElement).style.filter = 'blur(0.4px)';
-              setTimeout(() => { (e.target as HTMLElement).style.filter = 'none'; }, 60);
-            }, 180);
+            if (isMobile) {
+              (e.target as HTMLElement).style.opacity = '0.55';
+              (e.target as HTMLElement).style.transform = 'none';
+              (e.target as HTMLElement).style.transition = 'opacity 180ms cubic-bezier(.2,.7,.1,1)';
+            } else {
+              (e.target as HTMLElement).classList.add('stamped');
+              setTimeout(() => {
+                (e.target as HTMLElement).style.filter = 'blur(0.4px)';
+                setTimeout(() => { (e.target as HTMLElement).style.filter = 'none'; }, 60);
+              }, 180);
+            }
             obs.unobserve(e.target);
           }
         });

@@ -100,11 +100,11 @@ p, span, h1, h2, h3, h4, h5, h6, li, dd, dt, label { color: var(--ink); }
 @view-transition { navigation: auto; }
 
 ::view-transition-old(root) {
-  animation: vt-cover 340ms cubic-bezier(.2,.7,.1,1) both;
+  animation: vt-cover 240ms cubic-bezier(.2,.7,.1,1) both;
   z-index: 999;
 }
 ::view-transition-new(root) {
-  animation: vt-reveal 420ms cubic-bezier(.2,.7,.1,1) both;
+  animation: vt-reveal 280ms cubic-bezier(.2,.7,.1,1) both;
   z-index: 1;
 }
 ::view-transition-group(root) { background: var(--ink-deep); }
@@ -118,6 +118,26 @@ p, span, h1, h2, h3, h4, h5, h6, li, dd, dt, label { color: var(--ink); }
   to   { clip-path: inset(0 0 0 0); }
 }
 
+/* 모바일: 먹지 전환 대신 opacity 페이드 */
+@media (max-width: 768px) {
+  ::view-transition-old(root) {
+    animation: vt-fade-out 140ms ease both;
+  }
+  ::view-transition-new(root) {
+    animation: vt-fade-in 140ms ease both;
+  }
+  ::view-transition-group(root) { background: transparent; }
+}
+
+@keyframes vt-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes vt-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 /* === prefers-reduced-motion === */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -126,4 +146,11 @@ p, span, h1, h2, h3, h4, h5, h6, li, dd, dt, label { color: var(--ink); }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
 }
+
+/* === 모바일 overflow 방지 === */
+html, body { overflow-x: hidden; }

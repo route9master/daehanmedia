@@ -78,46 +78,64 @@
     sessionStorage.setItem('intro-seen', '1');
     document.body.style.overflow = 'hidden';
 
-    symbol.style.opacity = '1';
+    const mobile = window.matchMedia('(max-width: 768px)').matches;
+    // 모바일: 총 1.2초 / 데스크톱: 총 2.1초
+    const t = mobile
+      ? { stroke: 0.7, seal: 700, word: 860, lift: 1000, liftDur: 0.24 }
+      : { stroke: 1.2, seal: 1200, word: 1500, lift: 1760, liftDur: 0.42 };
 
-    // 심볼 아래→위 reveal (1.2초)
-    animate(
-      symbolImg,
-      { clipPath: ['inset(100% 0 0 0)', 'inset(0% 0 0 0)'] },
-      { duration: 1.2, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' }
-    );
-
-    // 검인 효과 (1.2초 후, 180ms)
-    setTimeout(() => {
-      symbolImg.style.filter = 'brightness(0) saturate(100%) invert(18%) sepia(80%) saturate(2800%) hue-rotate(348deg) brightness(85%) contrast(95%)';
-      animate(
-        symbolImg,
-        { scale: [1.08, 1], rotate: ['-3deg', '0deg'] },
-        { duration: 0.18, easing: [0.15, 1.1, 0.3, 1], fill: 'forwards' }
-      );
-      setTimeout(() => {
-        symbolImg.style.filter += ' blur(0.4px)';
-        setTimeout(() => {
-          symbolImg.style.filter = 'brightness(0) saturate(100%) invert(18%) sepia(80%) saturate(2800%) hue-rotate(348deg) brightness(85%) contrast(95%)';
-        }, 60);
-      }, 180);
-    }, 1200);
-
-    // 워드마크 (1.5초)
-    setTimeout(() => {
-      animate(wordmark, { opacity: [0, 1] }, { duration: 0.26, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' });
-    }, 1500);
-
-    // 먹지 걷힘 (1.76초 후, 420ms)
-    setTimeout(() => {
+    // 모바일: 심볼·워드마크 없이 먹지만 걷힘
+    if (mobile) {
       animate(
         bg,
-        { transform: ['translateY(0)', 'translateY(-100%)'] },
-        { duration: 0.42, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' }
+        { opacity: [1, 0] },
+        { duration: t.liftDur, easing: [0.2, 0.7, 0.1, 1], delay: t.lift / 1000, fill: 'forwards' }
       ).then(() => {
         intro.classList.add('done');
         document.body.style.overflow = '';
       });
-    }, 1760);
+    } else {
+      symbol.style.opacity = '1';
+
+      // 심볼 아래→위 reveal
+      animate(
+        symbolImg,
+        { clipPath: ['inset(100% 0 0 0)', 'inset(0% 0 0 0)'] },
+        { duration: t.stroke, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' }
+      );
+
+      // 검인 효과
+      setTimeout(() => {
+        symbolImg.style.filter = 'brightness(0) saturate(100%) invert(18%) sepia(80%) saturate(2800%) hue-rotate(348deg) brightness(85%) contrast(95%)';
+        animate(
+          symbolImg,
+          { scale: [1.08, 1], rotate: ['-3deg', '0deg'] },
+          { duration: 0.18, easing: [0.15, 1.1, 0.3, 1], fill: 'forwards' }
+        );
+        setTimeout(() => {
+          symbolImg.style.filter += ' blur(0.4px)';
+          setTimeout(() => {
+            symbolImg.style.filter = 'brightness(0) saturate(100%) invert(18%) sepia(80%) saturate(2800%) hue-rotate(348deg) brightness(85%) contrast(95%)';
+          }, 60);
+        }, 180);
+      }, t.seal);
+
+      // 워드마크
+      setTimeout(() => {
+        animate(wordmark, { opacity: [0, 1] }, { duration: 0.26, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' });
+      }, t.word);
+
+      // 먹지 걷힘
+      setTimeout(() => {
+        animate(
+          bg,
+          { transform: ['translateY(0)', 'translateY(-100%)'] },
+          { duration: t.liftDur, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' }
+        ).then(() => {
+          intro.classList.add('done');
+          document.body.style.overflow = '';
+        });
+      }, t.lift);
+    }
   }
 </script>

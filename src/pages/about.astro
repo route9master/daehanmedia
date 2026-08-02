@@ -392,8 +392,17 @@ import NextPage from '../components/NextPage.astro';
 
   /* ===== 모바일 ===== */
   @media (max-width: 768px) {
+    .greeting-inner {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .greeting-body {
+      margin-left: 0;
+    }
+
     .greeting-p {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
     }
 
     .greeting-p br {
@@ -438,9 +447,13 @@ import NextPage from '../components/NextPage.astro';
 <script>
   import Lenis from 'lenis';
 
-  const lenis = new Lenis({ lerp: 0.085 });
-  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  if (!isMobile) {
+    const lenis = new Lenis({ lerp: 0.085 });
+    function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
 
   // 블록 1 — 문단 순차 등장
   const greetingBody = document.getElementById('greeting-body');
@@ -462,20 +475,26 @@ import NextPage from '../components/NextPage.astro';
     greetingObs.observe(greetingBody);
   }
 
-  // 블록 2 — 검인 효과
+  // 블록 2 — 검인 효과 — 모바일: 회전 없이 opacity만
   const sealEl = document.getElementById('mission-seal');
   if (sealEl) {
     const sealObs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            (entry.target as HTMLElement).classList.add('stamped');
-            setTimeout(() => {
-              (entry.target as HTMLElement).style.filter = 'blur(0.4px)';
+            if (isMobile) {
+              (entry.target as HTMLElement).style.opacity = '1';
+              (entry.target as HTMLElement).style.transform = 'none';
+              (entry.target as HTMLElement).style.transition = 'opacity 180ms cubic-bezier(.2,.7,.1,1)';
+            } else {
+              (entry.target as HTMLElement).classList.add('stamped');
               setTimeout(() => {
-                (entry.target as HTMLElement).style.filter = 'none';
-              }, 60);
-            }, 180);
+                (entry.target as HTMLElement).style.filter = 'blur(0.4px)';
+                setTimeout(() => {
+                  (entry.target as HTMLElement).style.filter = 'none';
+                }, 60);
+              }, 180);
+            }
             sealObs.unobserve(entry.target);
           }
         });

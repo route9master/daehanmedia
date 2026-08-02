@@ -395,9 +395,13 @@ const { category, items } = Astro.props;
   import Lenis from 'lenis';
   import { animate } from 'motion';
 
-  const lenis = new Lenis({ lerp: 0.085 });
-  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  if (!isMobile) {
+    const lenis = new Lenis({ lerp: 0.085 });
+    function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
 
   // Redaction 100 → 10 transition
   const catTitle = document.getElementById('cat-title');
@@ -405,31 +409,36 @@ const { category, items } = Astro.props;
     setTimeout(() => catTitle.classList.add('resolved'), 100);
   }
 
-  // 검인 (seal stamp) — 1회
+  // 검인 (seal stamp) — 1회, 모바일: 회전 없이 opacity만
   const seal = document.getElementById('seal-stamp');
   if (seal) {
-    const rotate = getComputedStyle(seal).getPropertyValue('--seal-rotate').trim() || '-4deg';
-    animate(
-      seal,
-      {
-        opacity: [0, 0.55],
-        scale: [1.14, 1],
-        rotate: [rotate, rotate],
-      },
-      {
-        duration: 0.18,
-        easing: [0.15, 1.1, 0.3, 1],
-        fill: 'forwards',
-        delay: 0.4,
-      }
-    );
-    // 잉크 번짐
-    setTimeout(() => {
-      (seal as HTMLElement).style.filter = 'blur(0.4px)';
+    if (isMobile) {
+      seal.style.transform = 'none';
+      animate(seal, { opacity: [0, 0.55] }, { duration: 0.18, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards', delay: 0.4 });
+    } else {
+      const rotate = getComputedStyle(seal).getPropertyValue('--seal-rotate').trim() || '-4deg';
+      animate(
+        seal,
+        {
+          opacity: [0, 0.55],
+          scale: [1.14, 1],
+          rotate: [rotate, rotate],
+        },
+        {
+          duration: 0.18,
+          easing: [0.15, 1.1, 0.3, 1],
+          fill: 'forwards',
+          delay: 0.4,
+        }
+      );
+      // 잉크 번짐
       setTimeout(() => {
-        (seal as HTMLElement).style.filter = 'none';
-      }, 60);
-    }, 580);
+        (seal as HTMLElement).style.filter = 'blur(0.4px)';
+        setTimeout(() => {
+          (seal as HTMLElement).style.filter = 'none';
+        }, 60);
+      }, 580);
+    }
   }
 
   // 판면 IntersectionObserver — 색인 활성화 + 진입 애니메이션

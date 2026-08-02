@@ -330,9 +330,13 @@ const categories = ['검색', '노출', '영상', '판매', '재방문', '제작
 <script>
   import Lenis from 'lenis';
 
-  const lenis = new Lenis({ lerp: 0.085 });
-  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  if (!isMobile) {
+    const lenis = new Lenis({ lerp: 0.085 });
+    function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
 
   // 태그 토글
   const tags = document.querySelectorAll<HTMLButtonElement>('.tag');

@@ -292,9 +292,13 @@ import { steps } from '../data/process';
 <script>
   import Lenis from 'lenis';
 
-  const lenis = new Lenis({ lerp: 0.085 });
-  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  if (!isMobile) {
+    const lenis = new Lenis({ lerp: 0.085 });
+    function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
 
   const stepEls = document.querySelectorAll<HTMLElement>('.step');
   const obs = new IntersectionObserver(
