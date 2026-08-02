@@ -213,6 +213,10 @@ const topMedia = media.slice(0, 6);
     pointer-events: none;
   }
 
+  @media (max-width: 768px) {
+    .hero-scan { display: none; }
+  }
+
   .hero-watermark {
     position: absolute;
     right: clamp(24px, 7vw, 120px);

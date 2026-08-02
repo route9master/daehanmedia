@@ -22,7 +22,7 @@
     pointer-events: none;
   }
 
-  .intro.done { display: none; }
+  /* .done 상태는 JS에서 remove()로 처리 */
 
   .intro-bg {
     position: absolute;
@@ -73,7 +73,7 @@
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!intro || !bg || !symbol || !symbolImg || !wordmark || !isHome || seen || prefersReduced) {
-    intro?.classList.add('done');
+    intro?.remove();
   } else {
     sessionStorage.setItem('intro-seen', '1');
     document.body.style.overflow = 'hidden';
@@ -91,7 +91,7 @@
         { opacity: [1, 0] },
         { duration: t.liftDur, easing: [0.2, 0.7, 0.1, 1], delay: t.lift / 1000, fill: 'forwards' }
       ).then(() => {
-        intro.classList.add('done');
+        intro.remove();
         document.body.style.overflow = '';
       });
     } else {
@@ -132,7 +132,7 @@
           { transform: ['translateY(0)', 'translateY(-100%)'] },
           { duration: t.liftDur, easing: [0.2, 0.7, 0.1, 1], fill: 'forwards' }
         ).then(() => {
-          intro.classList.add('done');
+          intro.remove();
           document.body.style.overflow = '';
         });
       }, t.lift);
