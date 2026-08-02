@@ -1,5 +1,6 @@
 /* === DESIGN.md §1 — Color Tokens === */
 :root {
+  color-scheme: light;
   /* 지면 */
   --paper:        #E4E1D6;
   --paper-warm:   #EDEAE1;
