@@ -1,30 +1,71 @@
-/* === Noto Serif KR — 국문 디스플레이 (Bold 700, Heavy 900만) === */
-@import '@fontsource/noto-serif-kr/korean-700.css';
-@import '@fontsource/noto-serif-kr/korean-900.css';
-@import '@fontsource/noto-serif-kr/latin-700.css';
-@import '@fontsource/noto-serif-kr/latin-900.css';
+/* === Noto Serif KR — 국문 디스플레이 (700, 900) — 사이트 한글 서브셋 === */
+@font-face {
+  font-family: 'Noto Serif KR';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/noto-serif-kr-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Noto Serif KR';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/noto-serif-kr-900.woff2') format('woff2');
+}
 
-/* === Wanted Sans — 국문 본문 (400, 500, 600만) === */
-@import 'wanted-sans/fonts/webfonts/static/split/WantedSans-Regular.css';
-@import 'wanted-sans/fonts/webfonts/static/split/WantedSans-Medium.css';
-@import 'wanted-sans/fonts/webfonts/static/split/WantedSans-SemiBold.css';
+/* === Wanted Sans — 국문 본문 (400, 500, 600) — 사이트 한글 서브셋 === */
+@font-face {
+  font-family: 'Wanted Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/wanted-sans-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Wanted Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/wanted-sans-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Wanted Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/wanted-sans-600.woff2') format('woff2');
+}
 
-/* === Geist Mono — 데이터·라벨 (400, 500) === */
-@import '@fontsource/geist-mono/latin-400.css';
-@import '@fontsource/geist-mono/latin-500.css';
+/* === Geist Mono — 데이터·라벨 (400만) === */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/geist-mono-400.woff2') format('woff2');
+}
 
-/* === Redaction 4단계 — 라틴 시그니처 (400만) === */
-@import '@fontsource/redaction-100/400.css';
-@import '@fontsource/redaction-70/400.css';
-@import '@fontsource/redaction-35/400.css';
-@import '@fontsource/redaction-10/400.css';
+/* === Redaction — 라틴 시그니처 (100, 10만 사용) === */
+@font-face {
+  font-family: 'Redaction 100';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/redaction-100.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Redaction 10';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/redaction-10.woff2') format('woff2');
+}
 
 :root {
   --font-display: 'Noto Serif KR', serif;
   --font-body: 'Wanted Sans', sans-serif;
   --font-mono: 'Geist Mono', monospace;
   --font-rd-100: 'Redaction 100', serif;
-  --font-rd-70: 'Redaction 70', serif;
-  --font-rd-35: 'Redaction 35', serif;
   --font-rd-10: 'Redaction 10', serif;
 }
