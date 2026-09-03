@@ -22,8 +22,7 @@ const categories = ['검색', '노출', '영상', '판매', '재방문', '제작
           </div>
           <div class="contact-info">
             <p>평일 10:00–17:00 접수 · 영업일 기준 1일 이내 회신</p>
-            <p>대표번호는 준비 중입니다. 현재는 이메일로 접수받습니다.</p>
-            <p><a href="mailto:dmg@daehanmedia.kr" class="contact-email">dmg@daehanmedia.kr</a></p>
+            <p><a href="tel:0220884840" class="contact-link contact-tel">02-2088-4840</a> · <a href="mailto:dmg@daehanmedia.kr" class="contact-link">dmg@daehanmedia.kr</a></p>
           </div>
         </div>
 
@@ -136,14 +135,18 @@ const categories = ['검색', '노출', '영상', '판매', '재방문', '제작
     letter-spacing: -0.01em;
   }
 
-  .contact-email {
+  .contact-link {
     color: var(--seal);
     border-bottom: 1px solid var(--seal);
     transition: opacity 180ms cubic-bezier(.2,.7,.1,1);
   }
 
-  .contact-email:hover {
+  .contact-link:hover {
     opacity: 0.7;
+  }
+
+  .contact-tel {
+    font-family: var(--font-mono);
   }
 
   /* 폼 */

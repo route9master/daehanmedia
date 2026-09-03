@@ -19,9 +19,8 @@ const navItems = [
         <dl class="footer-dl">
           <div><dt>상호</dt><dd>대한미디어그룹</dd></div>
           <div><dt>사업자등록번호</dt><dd>707-25-02102</dd></div>
-          <div><dt>통신판매업신고</dt><dd>준비중</dd></div>
           <div><dt>주소</dt><dd>서울특별시 금천구 디지털로9길 99, 스타밸리 1304-B호</dd></div>
-          <div><dt>대표번호</dt><dd>준비중</dd></div>
+          <div><dt>대표번호</dt><dd><a href="tel:0220884840" class="footer-tel">02-2088-4840</a></dd></div>
           <div><dt>이메일</dt><dd><a href="mailto:dmg@daehanmedia.kr">dmg@daehanmedia.kr</a></dd></div>
           <div><dt>운영시간</dt><dd>평일 10:00 – 17:00</dd></div>
         </dl>
@@ -126,6 +125,14 @@ const navItems = [
   }
 
   .footer-dl dd a:hover { border-color: var(--paper); }
+
+  .footer-dl dd a.footer-tel {
+    font-family: var(--font-mono);
+    color: var(--seal);
+    border-bottom-color: var(--seal);
+  }
+
+  .footer-dl dd a.footer-tel:hover { opacity: 0.7; }
 
   .footer-right {
     display: flex;

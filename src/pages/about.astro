@@ -89,16 +89,12 @@ import NextPage from '../components/NextPage.astro';
             <span class="info-val">707-25-02102</span>
           </div>
           <div class="info-item">
-            <span class="info-label">통신판매업신고</span>
-            <span class="info-val info-pending">준비중</span>
-          </div>
-          <div class="info-item">
             <span class="info-label">주소</span>
             <span class="info-val">서울특별시 금천구 디지털로9길 99, 스타밸리 1304-B호</span>
           </div>
           <div class="info-item">
             <span class="info-label">대표번호</span>
-            <span class="info-val info-pending">준비중</span>
+            <span class="info-val"><a href="tel:0220884840" class="info-tel">02-2088-4840</a></span>
           </div>
           <div class="info-item">
             <span class="info-label">이메일</span>
@@ -386,9 +382,14 @@ import NextPage from '../components/NextPage.astro';
     border-color: var(--ink);
   }
 
-  .info-pending {
-    color: var(--ink-mute);
+  .info-tel {
+    font-family: var(--font-mono);
+    color: var(--seal);
+    border-bottom: 1px solid var(--seal);
+    transition: opacity 180ms cubic-bezier(.2,.7,.1,1);
   }
+
+  .info-tel:hover { opacity: 0.7; }
 
   /* ===== 모바일 ===== */
   @media (max-width: 768px) {
