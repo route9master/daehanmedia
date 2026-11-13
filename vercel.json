@@ -3,16 +3,52 @@
   "installCommand": "echo skip",
   "buildCommand": "echo skip",
   "outputDirectory": "site",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
-    { "source": "/about", "destination": "/#/about", "permanent": false },
-    { "source": "/contact", "destination": "/#/contact", "permanent": false },
-    { "source": "/process", "destination": "/#/process", "permanent": false },
-    { "source": "/privacy", "destination": "/#/privacy", "permanent": false },
-    { "source": "/services", "destination": "/#/services", "permanent": false },
-    { "source": "/services/:path*", "destination": "/#/services", "permanent": false },
-    { "source": "/media", "destination": "/#/services", "permanent": false }
+    {
+      "source": "/media",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/services/:slug",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
   ],
   "headers": [
-    { "source": "/intro.mp4", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/intro.mp4",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,1 @@
+{"name": "대한미디어그룹", "short_name": "대한미디어그룹", "lang": "ko", "start_url": "/", "display": "browser", "background_color": "#F3F2EE", "theme_color": "#111111", "icons": [{"src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"}, {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}]}
