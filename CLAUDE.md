@@ -23,20 +23,35 @@ DESIGN.md에 없는 색·폰트·효과는 절대 쓰지 않는다.
 - 리포트·명세 약속 ("매달 리포트 드립니다", "지출을 명세합니다")
 - 추적·데이터 강조 ("데이터 기반", "실시간 추적", "대시보드")
 
-## 빌드·배포
+## 배포 (현재 구조)
 
-- **Astro 정적 빌드 전용.** SSR 금지. `output: 'static'`
-- 가비아 웹호스팅(PHP)에 FTP 업로드. Node 서버 없음
-- 문의 폼: `POST → /api/contact.php` (PHPMailer + MySQL)
-- 배포: GitHub Actions `SamKirkland/FTP-Deploy-Action`
+- **운영 사이트 = `site/` 폴더** (`site/index.html`, `site/intro.mp4`)
+- `vercel.json` 설정대로 빌드 없이 `site/`를 그대로 Vercel에 배포한다
+  (`installCommand`·`buildCommand`는 `echo skip`, `outputDirectory: "site"`)
+- **`main`에 push하면 Vercel이 자동 배포**한다
+- 예전 경로(`/about`, `/services` 등)는 `vercel.json`의 redirects로 `/#/...` 해시 라우트에 연결된다
+- 사이트를 고칠 때는 `site/index.html`을 수정한다. Astro 소스(`src/` 등)를 고쳐도 배포에 반영되지 않는다
+
+### 되돌리기
+
+`vercel.json`과 `site/` 폴더를 지우고 push하면 예전 사이트로 돌아간다.
+
+## 예전 Astro 소스 (배포에 안 씀)
+
+`src/`, `public/`, `astro.config.mjs`, `package.json` 등은 예전 버전으로 남겨둔 것이며 현재 배포에 쓰이지 않는다.
+아래는 그 Astro 버전 기준 내용이다.
+
+- Astro 정적 빌드 전용. SSR 금지. `output: 'static'`
 
 ## 금지 사항
 
 - **브라우저 storage API 사용 금지** (localStorage, sessionStorage, IndexedDB)
+  - **예외 하나만 허용:** 인트로를 세션당 한 번만 보여주기 위한 `sessionStorage`의 `dmgIntro` 값.
+    이 외의 키나 다른 storage API는 쓰지 않는다
 - SSR, 서버 렌더링 의존 금지
 - 방문자 분석 도구·광고 픽셀 설치 금지
 
-## 설치된 패키지
+## 설치된 패키지 (예전 Astro 소스용)
 
 ```
 motion
