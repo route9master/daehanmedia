@@ -1,0 +1,18 @@
+{
+  "framework": null,
+  "installCommand": "echo skip",
+  "buildCommand": "echo skip",
+  "outputDirectory": "site",
+  "redirects": [
+    { "source": "/about", "destination": "/#/about", "permanent": false },
+    { "source": "/contact", "destination": "/#/contact", "permanent": false },
+    { "source": "/process", "destination": "/#/process", "permanent": false },
+    { "source": "/privacy", "destination": "/#/privacy", "permanent": false },
+    { "source": "/services", "destination": "/#/services", "permanent": false },
+    { "source": "/services/:path*", "destination": "/#/services", "permanent": false },
+    { "source": "/media", "destination": "/#/services", "permanent": false }
+  ],
+  "headers": [
+    { "source": "/intro.mp4", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
+  ]
+}
