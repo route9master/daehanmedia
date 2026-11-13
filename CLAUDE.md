@@ -25,12 +25,14 @@ DESIGN.md에 없는 색·폰트·효과는 절대 쓰지 않는다.
 
 ## 배포 (현재 구조)
 
-- **운영 사이트 = `site/` 폴더** (`site/index.html`, `site/intro.mp4`)
+- **이제 `site/` 폴더가 원본이다. 디자인은 DESIGN.md 기준, 예전 build_site.py 방식으로 다시 생성하지 말 것.**
+- CONTENT.md는 예전 도감 컨셉 시절 문서다. 카피 금지 규칙(§0)만 유효하고, 문구의 기준은 `site/`의 현재 문구다
+- **운영 사이트 = `site/` 폴더** (페이지 7개 + 공용 `site/assets/site.<날짜>.css`·`.js`, `site/intro.mp4`)
 - `vercel.json` 설정대로 빌드 없이 `site/`를 그대로 Vercel에 배포한다
   (`installCommand`·`buildCommand`는 `echo skip`, `outputDirectory: "site"`)
 - **`main`에 push하면 Vercel이 자동 배포**한다
 - 예전 경로(`/about`, `/services` 등)는 `vercel.json`의 redirects로 `/#/...` 해시 라우트에 연결된다
-- 사이트를 고칠 때는 `site/index.html`을 수정한다. Astro 소스(`src/` 등)를 고쳐도 배포에 반영되지 않는다
+- 디자인·동작은 `site/assets/`의 공용 CSS·JS를, 문구·메타는 각 페이지 HTML을 수정한다. CSS·JS를 바꾸면 파일 이름의 날짜를 올리고 7개 페이지의 링크도 바꾼다. Astro 소스(`src/` 등)를 고쳐도 배포에 반영되지 않는다
 
 ### 되돌리기
 
