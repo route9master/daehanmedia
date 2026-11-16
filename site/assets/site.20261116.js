@@ -98,7 +98,7 @@ const NOW=[{id:'none',l:'아무것도 안 하고 있다'},{id:'naver',l:'네이�
 
 /* 근거 문장 */
 /* 구글 광고 전체에서 답에 맞춰 점수를 매겨 순위를 낸다. 검색광고는 언제나 3위 안 */
-const PNAME={search:'Google 검색광고',pmax:'실적 최대화 (PMax)',shopping:'쇼핑 광고',yt:'YouTube 광고 (인스트림 · 쇼츠)',dg:'디맨드젠',gdn:'디스플레이 (GDN)',rmk:'리마케팅',local:'지도 · 위치 광고',call:'통화 광고',multi:'해외 · 다국어 캠페인'};
+const PNAME={search:'구글 검색광고',pmax:'실적 최대화 (P-MAX)',shopping:'쇼핑 광고',yt:'YouTube 광고 (인스트림 · 쇼츠)',dg:'디맨드젠',gdn:'디스플레이 (GDN)',rmk:'리마케팅',local:'지도 · 위치 광고',call:'통화 광고',multi:'해외 · 다국어 캠페인'};
 const BASE={
  svc:{pmax:8,call:8,search:7,local:7,rmk:5,yt:4,dg:4,gdn:2},
  med:{pmax:8,rmk:7,yt:7,dg:7,search:6,local:6,call:4,gdn:3},
@@ -115,7 +115,7 @@ const MOD_NOW={none:{search:1},naver:{yt:1,dg:1,pmax:1},sns:{search:2,rmk:1},goo
 const MOD_BIZ={pre:{dg:1,yt:1},fr:{local:2,pmax:1}};
 /* 다른 매체: 대한미디어그룹이 집행하는 네이버 · 카카오 · 메타 */
 Object.assign(PNAME,{naver_sa:'네이버 파워링크 (검색광고)',naver_place:'네이버 플레이스 광고',naver_shop:'네이버 쇼핑검색 광고',kakao:'카카오 모먼트',meta:'메타 광고 (인스타그램 · 페이스북)'});
-const MEDIA=p=>p.startsWith('naver')?'네이버':p==='kakao'?'카카오':p==='meta'?'메타':'Google';
+const MEDIA=p=>p.startsWith('naver')?'네이버':p==='kakao'?'카카오':p==='meta'?'메타':'구글';
 const OBASE={
  svc:{naver_sa:9,naver_place:6,meta:4,kakao:3},
  med:{naver_sa:9,naver_place:8,meta:7,kakao:4},
@@ -272,9 +272,9 @@ function finish(){const I=ind(),q=query(7),k=det().k,sit=SIT[A.sit].id,tg=I.tg[A
       </div>
       <p class="cap">이 자리에, 당신의 광고를 겁니다.</p>
     </div>
-    <aside class="kp"><p class="lab">진단 결과</p><h2>답은 구글 광고입니다.</h2>
+    <aside class="kp"><h2>답은 구글 광고입니다.</h2>
       <p class="qh">고르신 답을 근거로, 구글을 1순위에 두고 네이버 · 카카오 · 메타까지 순위를 매겼습니다.</p>
-      <h4>추천 광고 순위</h4><ol class="mix">${mix.map(m=>`<li><div><em class="md">${esc(m[2])}</em><b>${esc(m[0])}</b><span>${esc(m[1])}</span></div></li>`).join('')}</ol>
+      <ol class="mix">${mix.map(m=>`<li><div><em class="md">${esc(m[2])}</em><b>${esc(m[0])}</b><span>${esc(m[1])}</span></div></li>`).join('')}</ol>
       <h4>왜 지금 구글인가 · 운영 포인트</h4><ul class="why">${why.map(w=>`<li>${esc(w)}</li>`).join('')}</ul>
     </aside></div>`;
     document.body.classList.add('done');scrollTo(0,0);$('again').onclick=reset;
@@ -302,8 +302,12 @@ function go(){document.querySelectorAll('.nav a.t').forEach(a=>a.classList.toggl
   if(route==='services'){const sub=location.hash.slice(1);document.querySelectorAll('#tabs a').forEach(a=>a.classList.toggle('on',a.dataset.c===sub))}
   if(route==='contact')attachDiag()}
 addEventListener('hashchange',go);
-$('menu').onclick=()=>{const o=document.body.classList.toggle('mopen');$('menu').setAttribute('aria-expanded',o)};
-document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>{document.body.classList.remove('mopen');$('menu').setAttribute('aria-expanded','false')}));
+const menu=o=>{document.body.classList.toggle('mopen',o);$('menu').setAttribute('aria-expanded',o)};
+$('menu').onclick=()=>menu(!document.body.classList.contains('mopen'));
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>menu(false)));
+/* 덮개(body::after)를 누르면 클릭 대상이 body가 된다 */
+document.body.addEventListener('click',e=>{if(e.target===document.body&&document.body.classList.contains('mopen'))menu(false)});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('mopen')){menu(false);$('menu').focus()}});
 document.querySelectorAll('[data-go="diag"]').forEach(a=>a.addEventListener('click',e=>{if(route==='home'){e.preventDefault();scrollTo({top:0,behavior:RM?'auto':'smooth'})}}));
 /* 광고 페이지: 스크롤 위치에 따라 탭 표시 */
 addEventListener('scroll',()=>{if(route!=='services')return;let cur='';document.querySelectorAll('.svc-cat').forEach(sec=>{if(sec.getBoundingClientRect().top<200)cur=sec.id});

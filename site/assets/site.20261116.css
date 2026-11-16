@@ -386,3 +386,51 @@ body.intro-on{overflow:hidden}
   .top .nav{margin-right:2px}
 }
 @media (prefers-reduced-motion:reduce){.q .caret{animation:none}}
+
+/* ── 화면 점검 수정 (2026-11-16) ── */
+/* 상품 탭: 머리 바탕을 흰색으로 채우고, 탭을 머리 바로 아래(84 · 모바일 72px)에 붙여 틈을 없앤다. 탭 위 선 하나가 머리 아래 구분선 */
+body[data-page=services] .top{height:84px;background:var(--bg)}
+.tabs{top:84px;border-top:1px solid var(--rule-2);border-bottom:0}
+/* 체크박스: 브랜드 색, 동의 줄은 8px 띄우고 세로 가운데 */
+input[type=checkbox]{accent-color:var(--accent)}
+.form .agree{display:flex;align-items:center;gap:8px}
+.agree input{margin:0;flex:none}
+/* 진단 결과 라벨 정리 */
+.kp h2{margin-top:0}
+.mix{margin-top:24px}
+.kp h4,.dg-att .k{font-size:15px;font-weight:600;color:var(--ink)}
+/* 페이지 머리: 아래 선 없이 64px 여백으로 구분 */
+.ph-top{padding-bottom:0;border-bottom:0}
+.ph-top+.sec{padding-top:64px;border-top:0}
+.ph-top+.tabs{margin-top:64px}
+body[data-page=privacy] .ph-top h1{font-size:44px}
+body[data-page="404"] .ph-top+.sec{padding:32px 0 96px}
+body[data-page="404"] .ph-top+.sec .more{margin-top:0;vertical-align:top}
+/* 하단 상담 영역: 선 대신 바탕색. 바로 위 목록의 마지막 선도 없앤다 */
+.end{border-top:0;background:#F4F4F4}
+.wrap>.sec:last-child :is(.steps li,.faq details):last-child,.wrap>.sec:last-child .info tr:last-child>*{border-bottom:0}
+.note{margin-bottom:48px}
+/* 섹션 제목 옆 설명: 제목 마지막 줄과 같은 기준선 */
+.sec-h{align-items:last baseline}
+/* 진단 보기: 고른 줄은 녹색 글자 + 녹색 숫자 칸 */
+.sug.on:not(.pick) .l,.sug.on:not(.pick) .ic{color:var(--accent)}
+.sug.on:not(.pick) .k{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+@media (max-width:980px){
+  body[data-page=services] .top{height:72px}
+  .tabs{top:72px}
+  body[data-page="404"] .ph-top+.sec{padding-bottom:64px}
+  /* 모바일 메뉴: 열리면 ✕, 아래에 덮개, 본문 스크롤 잠금 */
+  .menu i{position:relative;transition:transform .2s ease-out}
+  .menu i::after{content:"";position:absolute;inset:0;background:currentColor;opacity:0;transform:rotate(90deg)}
+  body.mopen .menu i{box-shadow:none;transform:rotate(45deg)}
+  body.mopen .menu i::after{opacity:1}
+  body.mopen{overflow:hidden}
+  body.mopen::after{content:"";position:fixed;inset:0;z-index:19;background:rgba(17,17,17,.4)}
+  .opening .type{font-size:clamp(28px,12.5vw,72px)}
+}
+/* 진단 결과(768px 이하): 추천 순위 패널을 가짜 검색 결과 위로. DOM 순서는 그대로 */
+@media (max-width:768px){
+  .grid{display:flex;flex-direction:column;gap:0;align-items:stretch}
+  .grid>div{display:contents}
+  .grid .res,.grid .cap{order:1}
+}
