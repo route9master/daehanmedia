@@ -31,7 +31,7 @@ DESIGN.md에 없는 색·폰트·효과는 절대 쓰지 않는다.
 - `vercel.json` 설정대로 빌드 없이 `site/`를 그대로 Vercel에 배포한다
   (`installCommand`·`buildCommand`는 `echo skip`, `outputDirectory: "site"`)
 - **`main`에 push하면 Vercel이 자동 배포**한다
-- 예전 경로(`/about`, `/services` 등)는 `vercel.json`의 redirects로 `/#/...` 해시 라우트에 연결된다
+- 페이지마다 실제 주소(`/services`, `/about` 등)가 있다. 예전 주소는 두 갈래로 넘긴다: ① 서버 쪽 — `vercel.json` redirects가 `/media`·`/services/:slug` → `/services`, `/index.html` → `/`로 영구 이동(308). ② 브라우저 쪽 — 해시는 서버에 오지 않으므로, 홈에서 공용 JS의 `go()`가 예전 해시 주소 `/#/services/naver` 같은 것을 새 주소 `/services#naver`로 `location.replace` 한다(이때 인트로는 건너뜀)
 - 디자인·동작은 `site/assets/`의 공용 CSS·JS를, 문구·메타는 각 페이지 HTML을 수정한다. CSS·JS를 바꾸면 파일 이름의 날짜를 올리고 7개 페이지의 링크도 바꾼다. Astro 소스(`src/` 등)를 고쳐도 배포에 반영되지 않는다
 
 ### 되돌리기

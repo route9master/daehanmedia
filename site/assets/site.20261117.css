@@ -434,3 +434,19 @@ body[data-page="404"] .ph-top+.sec .more{margin-top:0;vertical-align:top}
   .grid>div{display:contents}
   .grid .res,.grid .cap{order:1}
 }
+
+/* ── 마무리 수정 (2026-11-17) ── */
+/* 짧은 페이지도 푸터가 화면 바닥까지: body를 화면 높이로 잡고 본문이 늘어난다 */
+body{display:flex;flex-direction:column}
+body>main{flex:1 0 auto}
+/* 진단 질문 번호는 한 줄로, 질문 글자만 줄바꿈 */
+.ask .n{white-space:nowrap;flex:none}
+.ask>span:last-child{min-width:0}
+/* 체크박스는 모두 18px, 글자와 세로 가운데, 간격 8px */
+input[type=checkbox]{width:18px;height:18px;margin:0;flex:none}
+.checks label,.dg-att label,.form .agree{align-items:center;gap:8px}
+@media (max-width:980px){
+  /* 모바일 메뉴가 열리면 머리는 흰 바탕으로 덮개 위에, 머리 아래는 1px 선 하나 */
+  body.mopen .top{background:var(--bg);border-bottom:1px solid var(--rule-2)}
+  body.mopen .nav{position:absolute;top:calc(100% + 1px)}
+}
