@@ -109,7 +109,6 @@ body.done .serp{display:block;animation:fin .5s ease both}
 .mix li{counter-increment:m;display:grid;grid-template-columns:50px 1fr;padding:14px 0;border-bottom:1px solid var(--rule)}
 .mix li::before{content:counter(m) "순위";font-size:13px;font-weight:600;color:var(--dim);padding-top:3px}
 .mix li:first-child::before{color:var(--ink)}
-.mix .md{display:inline-block;font-style:normal;font-size:13px;font-weight:600;letter-spacing:0;color:var(--dim);border:1px solid var(--rule-2);padding:1px 6px;margin-bottom:6px}
 .mix b{display:block;font-size:17px;font-weight:600;letter-spacing:-0.02em}
 .mix span{display:block;margin-top:4px;font-size:15px;line-height:1.55;color:rgba(var(--ink-rgb),.78)}
 .why{margin-top:10px;list-style:none}

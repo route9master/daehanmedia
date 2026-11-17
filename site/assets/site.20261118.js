@@ -115,7 +115,6 @@ const MOD_NOW={none:{search:1},naver:{yt:1,dg:1,pmax:1},sns:{search:2,rmk:1},goo
 const MOD_BIZ={pre:{dg:1,yt:1},fr:{local:2,pmax:1}};
 /* 다른 매체: 대한미디어그룹이 집행하는 네이버 · 카카오 · 메타 */
 Object.assign(PNAME,{naver_sa:'네이버 파워링크',naver_place:'네이버 플레이스',naver_shop:'네이버 쇼핑검색 광고',kakao:'카카오 비즈보드',meta:'메타 광고 (인스타그램 · 페이스북)'});
-const MEDIA=p=>p.startsWith('naver')?'네이버':p==='kakao'?'카카오':p==='meta'?'메타':'구글';
 const OBASE={
  svc:{naver_sa:9,naver_place:6,meta:4,kakao:3},
  med:{naver_sa:9,naver_place:8,meta:7,kakao:4},
@@ -204,8 +203,10 @@ const CHIP={biz:'사업',tg:'고객',sit:'고민',now:'지금 광고'};
 
 /* ───── 큰 검색어: 글자 크기를 칸에 맞춘다 ───── */
 const Q=$('q');let shown='',ghost='',typing=null;
-function fit(){if(!Q)return;const max=innerWidth<=980?64:132,min=innerWidth<=980?26:44;let f=max;Q.style.fontSize=f+'px';
-  while(f>min&&Q.scrollWidth>Q.clientWidth+1){f-=2;Q.style.fontSize=f+'px'}}
+/* 글자 크기 맞춤: 검색어 + 커서까지 잰 너비가 좌우 여백 안(패딩 제외)에 들어올 때까지 줄인다. 커서 오른쪽에 커서 폭만큼 숨 쉴 자리 */
+function fit(){if(!Q)return;const max=innerWidth<=980?64:132,min=innerWidth<=980?26:44,cs=getComputedStyle(Q),room=Q.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight),rg=document.createRange();let f=max;Q.style.fontSize=f+'px';
+  const w=()=>{rg.selectNodeContents(Q);return rg.getBoundingClientRect().width+f*.06};
+  while(f>min&&w()>room){f-=2;Q.style.fontSize=f+'px'}}
 function paint(){let h;
   if(ghost&&ghost!==shown){
     if(ghost.startsWith(shown))h=esc(shown)+'<span class="caret"></span><span class="gh">'+esc(ghost.slice(shown.length))+'</span>';
@@ -254,7 +255,7 @@ function back(){if(busy||!step)return;step--;const k=steps[step];delete A[k];if(
 /* ───── 결과: 검색 결과 페이지 ───── */
 function finish(){const I=ind(),q=query(7),k=det().k,sit=SIT[A.sit].id,tg=I.tg[A.tg],now=NOW[A.now].id;
   $('drop').innerHTML='';const en=$('enter');en.classList.add('hit');
-  const mix=rank().map(p=>[PNAME[p],pwhy(p,q,k),MEDIA(p)]);const tac=(sit==='call'&&A.ind==='shop')?['상품 바로 보이기','검색 결과에 상품 사진과 가격을 바로 띄워, 보고 바로 들어오게 합니다.']:BY_SIT[sit];
+  const mix=rank().map(p=>[PNAME[p],pwhy(p,q,k)]);const tac=(sit==='call'&&A.ind==='shop')?['상품 바로 보이기','검색 결과에 상품 사진과 가격을 바로 띄워, 보고 바로 들어오게 합니다.']:BY_SIT[sit];
   const why=[BY_NOW[now],`${tac[0]} — ${fill(tac[1],q,k)}`,BY_BIZ[A.biz],'전략 수립부터 세팅 · 운영 · 최적화까지, 대한미디어그룹이 직접 집행합니다.'];
   const ctaT=sit==='call'?CTA_CALL[A.ind]:CTA[sit];
   window.__lastDiag={q,ind:I.l,tg:tg.l,sit:SIT[A.sit].l,now:NOW[A.now].l,biz:BIZ.find(b=>b.id===A.biz).l,top:mix.map(m=>m[0])};
@@ -274,7 +275,7 @@ function finish(){const I=ind(),q=query(7),k=det().k,sit=SIT[A.sit].id,tg=I.tg[A
     </div>
     <aside class="kp"><h2>답은 구글 광고입니다.</h2>
       <p class="qh">고르신 답을 근거로, 구글을 1순위에 두고 네이버 · 카카오 · 메타까지 순위를 매겼습니다.</p>
-      <ol class="mix">${mix.map(m=>`<li><div><em class="md">${esc(m[2])}</em><b>${esc(m[0])}</b><span>${esc(m[1])}</span></div></li>`).join('')}</ol>
+      <ol class="mix">${mix.map(m=>`<li><div><b>${esc(m[0])}</b><span>${esc(m[1])}</span></div></li>`).join('')}</ol>
       <h4>왜 지금 구글인가 · 운영 포인트</h4><ul class="why">${why.map(w=>`<li>${esc(w)}</li>`).join('')}</ul>
     </aside></div>`;
     document.body.classList.add('done');scrollTo(0,0);$('again').onclick=reset;
