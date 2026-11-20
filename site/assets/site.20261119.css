@@ -449,3 +449,93 @@ input[type=checkbox]{width:18px;height:18px;margin:0;flex:none}
   body.mopen .top{background:var(--bg);border-bottom:1px solid var(--rule-2)}
   body.mopen .nav{position:absolute;top:calc(100% + 1px)}
 }
+
+/* ── 2026-11-19 전면 수정: 고객 여정 · 일하는 방식 · 이름의 뜻 · 파트 ── */
+.jr{list-style:none;border-top:1px solid var(--ink)}
+.jr li{display:grid;grid-template-columns:240px minmax(0,1fr) minmax(0,1.15fr);gap:32px;align-items:baseline;padding:30px 0 32px;border-bottom:1px solid var(--rule-2)}
+.jr .st{font-size:28px;font-weight:900;letter-spacing:-0.02em;line-height:1.2}
+.jr p{font-size:17px;line-height:1.7;color:var(--dim)}
+.jr .ch{display:flex;flex-wrap:wrap;gap:6px 22px}
+.jr .ch a{font-size:15px;font-weight:600;line-height:1.9;color:var(--ink);box-shadow:inset 0 -1px 0 var(--rule-2);transition:box-shadow .16s ease-out,color .16s ease-out}
+@media (hover:hover){.jr .ch a:hover{color:var(--accent);box-shadow:inset 0 -1px 0 var(--accent)}}
+.prin2{border-top:1px solid var(--ink)}
+.prin2>div{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:baseline;padding:34px 0 36px;border-bottom:1px solid var(--rule-2)}
+.prin2 h3{font-size:28px;font-weight:900;letter-spacing:-0.02em;line-height:1.3}
+.prin2 p{font-size:17px;line-height:1.75;color:var(--dim)}
+.nm{display:grid;grid-template-columns:auto 1fr;gap:16px 28px;align-items:baseline}
+.nm dt{font-size:20px;font-weight:900;letter-spacing:-0.02em}
+.nm dd{font-size:17px;line-height:1.75}
+.parts2{list-style:none;border-top:1px solid var(--ink)}
+.parts2 li{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:baseline;padding:26px 0 28px;border-bottom:1px solid var(--rule-2)}
+.parts2 h3{font-size:28px;font-weight:900;letter-spacing:-0.02em}
+.parts2 p{font-size:17px;line-height:1.7;color:var(--dim)}
+.you b{margin-right:10px}
+@media (max-width:980px){
+  .jr li,.prin2>div,.parts2 li{grid-template-columns:1fr;gap:10px;padding:24px 0 26px}
+  .jr .st,.prin2 h3,.parts2 h3{font-size:20px}
+  .jr p,.prin2 p,.parts2 p,.nm dd{font-size:15px}
+  .jr .ch{margin-top:4px}
+  .nm{grid-template-columns:1fr;gap:4px}
+  .nm dd{margin-bottom:12px}
+}
+/* 섹션 사이는 선 대신 여백으로 */
+.sec{border-top:0}
+/* 서비스: 카드 격자 대신 목록(이름 · 설명 · 권하는 상황 · 과금 기준) */
+.items{display:block;border:0;gap:0}
+.item,.item.gg2{display:grid;grid-template-columns:240px minmax(0,1fr) 320px;gap:32px;align-items:baseline;min-height:0;padding:22px 0 24px;background:none;border:0;border-bottom:1px solid var(--rule-2)}
+.item b{margin-top:0;font-size:17px;font-weight:700}
+.item p{margin-top:0;font-size:15px;line-height:1.7;color:var(--dim)}
+.item dl{margin-top:0;padding-top:0;grid-template-columns:96px 1fr;gap:4px 12px;font-size:13px;line-height:1.6}
+.item dt{color:var(--faint);font-weight:600}
+.item dd{color:var(--ink)}
+@media (max-width:980px){
+  .item,.item.gg2{grid-template-columns:1fr;gap:8px;padding:20px 0 22px}
+  .item dl{margin-top:4px}
+}
+/* ── 상단 메뉴: 전체 화면 목차 (2026-11-20, 시안 B) ── */
+.top.hx{display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:var(--bg);border-bottom:1px solid transparent}
+.hx .brand{gap:14px}
+.hx .brand .sym{width:46px}
+.hx .brand b{font-size:22px;font-weight:900;letter-spacing:-0.02em}
+.hx .rt{display:flex;align-items:center;gap:22px}
+.hx .tel2{font-size:15px;font-weight:700;color:var(--ink)}
+.hx .plate{font-size:15px;padding:13px 18px}
+.hx .menu{display:inline-flex;align-items:center;gap:12px;width:auto;height:48px;padding:0 4px;border:0;background:none;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
+.hx .menu i{position:relative;display:block;width:26px;height:2px;background:currentColor;box-shadow:0 -7px 0 currentColor;transition:transform .2s ease-out,box-shadow .2s ease-out}
+.hx .menu i::after{display:none}
+body.mopen .hx .menu i{transform:rotate(45deg);box-shadow:none}
+body.mopen .hx .menu i::before{content:"";position:absolute;inset:0;background:currentColor;transform:rotate(90deg)}
+.hx .nav{display:none;margin:0}
+body.mopen::after{display:none}
+body.mopen .top.hx{border-bottom-color:var(--rule-2)}
+body.mopen .hx .nav{display:grid;position:fixed;left:0;right:0;top:84px;bottom:0;grid-template-columns:minmax(0,1fr) 360px;gap:64px;padding:40px 48px 48px;background:var(--bg);box-shadow:none;border:0;overflow:auto;flex-direction:initial;align-content:start}
+.hx .ix{display:flex;flex-direction:column;border-top:1px solid var(--ink)}
+body.mopen .hx .ix a.t{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:24px;padding:16px 0 18px;border-bottom:1px solid var(--rule-2);font-size:inherit;color:var(--ink);box-shadow:none}
+.hx .ix .l{font-size:72px;font-weight:900;letter-spacing:-0.02em;line-height:1.05;transition:color .16s ease-out}
+.hx .ix .s{font-size:15px;color:var(--dim)}
+.hx .ix a.t.on .l{color:var(--accent)}
+@media (hover:hover){.hx .ix a.t:hover .l{color:var(--accent)}}
+.hx .ct{border-top:1px solid var(--ink);padding-top:20px}
+.hx .ct .k{font-size:13px;font-weight:600;color:var(--faint);margin-top:24px}
+.hx .ct .k:first-child{margin-top:0}
+.hx .ct p{font-size:15px;line-height:1.7}
+.hx .ct .big{display:block;font-size:44px;font-weight:900;letter-spacing:-0.01em;margin:4px 0 2px;color:var(--ink)}
+.tabs{top:84px}
+@media (prefers-reduced-motion:reduce){.hx .menu i,.hx .ix .l{transition:none}}
+@media (max-width:980px){
+  .top.hx{padding:12px 16px}
+  .hx .brand .sym{width:36px}
+  .hx .brand b{font-size:18px}
+  .hx .tel2{display:none}
+  .hx .rt{gap:8px}
+  .hx .plate{font-size:13px;padding:11px 12px}
+  .hx .menu .mt{display:none}
+  .hx .menu{width:44px;height:44px;justify-content:center;padding:0}
+  body.mopen .hx .nav{top:72px;grid-template-columns:1fr;gap:32px;padding:20px 16px 32px}
+  .hx .ix .l{font-size:44px}
+  body.mopen .hx .ix a.t{grid-template-columns:1fr;gap:4px;padding:14px 0 16px}
+  .hx .ct .big{font-size:28px}
+  .tabs{top:72px}
+}
+.hx .ix .s{font-weight:400}
+.doc table{margin-bottom:16px}
