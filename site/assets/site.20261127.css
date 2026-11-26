@@ -550,3 +550,16 @@ body.mopen .hx .ix a.t{display:grid;grid-template-columns:minmax(0,1fr) auto;ali
 .rel a span{font-size:15px;color:var(--dim)}
 .rel a:hover{opacity:.7}
 @media (max-width:760px){.rel a{padding:18px 2px}.rel a b{font-size:17px}.rel a span{font-size:13px}}
+
+/* 광고 가이드 (2026-11-26) */
+.ph-top .meta{margin-top:14px;font-size:13px;color:var(--dim)}
+.post-body{max-width:720px;padding:48px 0 8px}
+.post-body h2{margin:56px 0 0;font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-0.02em}
+.post-body h2:first-child{margin-top:0}
+.post-body p{margin-top:16px;font-size:17px;line-height:1.85;color:rgba(var(--ink-rgb),.86)}
+.post-body ul,.post-body ol{margin:16px 0 0;padding-left:1.3em;font-size:17px;line-height:1.85;color:rgba(var(--ink-rgb),.86)}
+.post-body ul{list-style:disc}
+.post-body ol{list-style:decimal}
+.post-body li{margin-top:8px}
+.post-body li::marker{color:var(--dim)}
+@media (max-width:760px){.post-body{padding:32px 0 4px}.post-body h2{margin-top:40px;font-size:20px}.post-body p,.post-body ul,.post-body ol{font-size:15px;line-height:1.8}}

@@ -29,18 +29,19 @@ DESIGN.md에 없는 색·폰트·효과는 절대 쓰지 않는다.
 - 마케팅 진단 순위: 매체 전체(네이버 · 구글 · 유튜브 · 메타 · 카카오 · 틱톡 · 당근 · 쿠팡 · 배달앱 · AI 답변 노출)에서 점수로 고른다. 1순위는 업종·상황에 맞는 매체가 차지한다. **구글 상품은 반드시 4순위 안에 들어간다**(1순위 고정 아님). 한 매체에서 최대 2개까지. 점수표는 공용 JS의 `BASE` · `MOD_*` · `rank()`.
 - IndexNow 키 파일 site/b8d0732c99ede0326abc9c1c64850b22.txt 는 지우지 말 것. 페이지를 추가하거나 고쳐서 배포한 뒤에는 바뀐 URL을 IndexNow(빙·네이버)로 제출한다.
 - 매체별 페이지 13개가 site/services/<매체>/index.html 에 있다. 서비스 페이지(site/services/index.html)의 광고 상품을 고치면 해당 매체 페이지의 상품 목록도 같이 고친다.
-- 공용 CSS는 site/assets/site.20261126.css 다.
+- 공용 CSS는 site/assets/site.20261127.css 다.
+- 광고 가이드는 site/guide/ 에 있다(목록 1개 + 글 5개). 글에도 홈페이지와 같은 문구 금지 규칙(성과 보장, 실적 숫자, 최상급 등)을 지킨다.
 
 ## 배포 (현재 구조)
 
 - **이제 `site/` 폴더가 원본이다. 디자인은 DESIGN.md 기준, 예전 build_site.py 방식으로 다시 생성하지 말 것.**
 - CONTENT.md는 예전 도감 컨셉 시절 문서다. 카피 금지 규칙(§0)만 유효하고, 문구의 기준은 `site/`의 현재 문구다
-- **운영 사이트 = `site/` 폴더** (페이지 20개(7개 + site/services/ 아래 매체별 13개) + 공용 `site/assets/site.<날짜>.css`·`.js`, `site/intro-20261120.mp4`). 영상처럼 1년 캐시가 걸린 파일을 바꿀 때는 파일 이름의 날짜를 바꾸고 `site/index.html`과 `vercel.json`의 경로도 같이 바꾼다
+- **운영 사이트 = `site/` 폴더** (페이지 26개(7개 + site/services/ 아래 매체별 13개 + site/guide/ 아래 광고 가이드 6개) + 공용 `site/assets/site.<날짜>.css`·`.js`, `site/intro-20261120.mp4`). 영상처럼 1년 캐시가 걸린 파일을 바꿀 때는 파일 이름의 날짜를 바꾸고 `site/index.html`과 `vercel.json`의 경로도 같이 바꾼다
 - `vercel.json` 설정대로 빌드 없이 `site/`를 그대로 Vercel에 배포한다
   (`installCommand`·`buildCommand`는 `echo skip`, `outputDirectory: "site"`)
 - **`main`에 push하면 Vercel이 자동 배포**한다
 - 페이지마다 실제 주소(`/services`, `/about` 등)가 있다. 예전 주소는 두 갈래로 넘긴다: ① 서버 쪽 — `vercel.json` redirects: `/media` → `/services`, `/index.html` → `/`(영구 이동 308). ② 브라우저 쪽 — 해시는 서버에 오지 않으므로, 홈에서 공용 JS의 `go()`가 예전 해시 주소 `/#/services/naver` 같은 것을 새 주소 `/services#naver`로 `location.replace` 한다(이때 인트로는 건너뜀)
-- 디자인·동작은 `site/assets/`의 공용 CSS·JS를, 문구·메타는 각 페이지 HTML을 수정한다. CSS·JS를 바꾸면 파일 이름의 날짜를 올리고 모든 페이지(7개 + site/services/ 아래 매체별 13개 = 20개)의 링크도 바꾼다. Astro 소스(`src/` 등)를 고쳐도 배포에 반영되지 않는다
+- 디자인·동작은 `site/assets/`의 공용 CSS·JS를, 문구·메타는 각 페이지 HTML을 수정한다. CSS·JS를 바꾸면 파일 이름의 날짜를 올리고 26개 페이지(7개 + 매체별 13개 + 광고 가이드 6개)의 링크를 모두 바꾼다. Astro 소스(`src/` 등)를 고쳐도 배포에 반영되지 않는다
 
 ### 되돌리기
 
