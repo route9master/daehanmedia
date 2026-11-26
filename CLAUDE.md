@@ -35,12 +35,12 @@ DESIGN.md에 없는 색·폰트·효과는 절대 쓰지 않는다.
 
 - **이제 `site/` 폴더가 원본이다. 디자인은 DESIGN.md 기준, 예전 build_site.py 방식으로 다시 생성하지 말 것.**
 - CONTENT.md는 예전 도감 컨셉 시절 문서다. 카피 금지 규칙(§0)만 유효하고, 문구의 기준은 `site/`의 현재 문구다
-- **운영 사이트 = `site/` 폴더** (페이지 7개 + 공용 `site/assets/site.<날짜>.css`·`.js`, `site/intro-20261120.mp4`). 영상처럼 1년 캐시가 걸린 파일을 바꿀 때는 파일 이름의 날짜를 바꾸고 `site/index.html`과 `vercel.json`의 경로도 같이 바꾼다
+- **운영 사이트 = `site/` 폴더** (페이지 20개(7개 + site/services/ 아래 매체별 13개) + 공용 `site/assets/site.<날짜>.css`·`.js`, `site/intro-20261120.mp4`). 영상처럼 1년 캐시가 걸린 파일을 바꿀 때는 파일 이름의 날짜를 바꾸고 `site/index.html`과 `vercel.json`의 경로도 같이 바꾼다
 - `vercel.json` 설정대로 빌드 없이 `site/`를 그대로 Vercel에 배포한다
   (`installCommand`·`buildCommand`는 `echo skip`, `outputDirectory: "site"`)
 - **`main`에 push하면 Vercel이 자동 배포**한다
 - 페이지마다 실제 주소(`/services`, `/about` 등)가 있다. 예전 주소는 두 갈래로 넘긴다: ① 서버 쪽 — `vercel.json` redirects: `/media` → `/services`, `/index.html` → `/`(영구 이동 308). ② 브라우저 쪽 — 해시는 서버에 오지 않으므로, 홈에서 공용 JS의 `go()`가 예전 해시 주소 `/#/services/naver` 같은 것을 새 주소 `/services#naver`로 `location.replace` 한다(이때 인트로는 건너뜀)
-- 디자인·동작은 `site/assets/`의 공용 CSS·JS를, 문구·메타는 각 페이지 HTML을 수정한다. CSS·JS를 바꾸면 파일 이름의 날짜를 올리고 7개 페이지의 링크도 바꾼다. Astro 소스(`src/` 등)를 고쳐도 배포에 반영되지 않는다
+- 디자인·동작은 `site/assets/`의 공용 CSS·JS를, 문구·메타는 각 페이지 HTML을 수정한다. CSS·JS를 바꾸면 파일 이름의 날짜를 올리고 모든 페이지(7개 + site/services/ 아래 매체별 13개 = 20개)의 링크도 바꾼다. Astro 소스(`src/` 등)를 고쳐도 배포에 반영되지 않는다
 
 ### 되돌리기
 
