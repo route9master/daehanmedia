@@ -44,6 +44,19 @@
 ## 페이지
 - [마케팅 진단 (홈)](https://www.daehanmedia.kr/): 일곱 가지 질문으로 업종에 맞는 매체 조합과 우선순위를 확인하는 진단
 - [서비스](https://www.daehanmedia.kr/services): 13개 매체 · 77가지 광고와 제작 서비스 전체
+- [네이버 광고](https://www.daehanmedia.kr/services/naver): 국내 검색과 지도, 쇼핑의 중심
+- [구글 광고](https://www.daehanmedia.kr/services/google): 검색에서 지도, 쇼핑, 배너까지 하나로 잇는 지면
+- [유튜브 광고](https://www.daehanmedia.kr/services/youtube): 보고, 기억하고, 다시 찾게 만드는 영상
+- [메타 광고](https://www.daehanmedia.kr/services/meta): 관심사로 만나는 인스타그램과 페이스북
+- [카카오 광고](https://www.daehanmedia.kr/services/kakao): 매일 여는 카카오톡과 다음의 화면
+- [쿠팡 광고](https://www.daehanmedia.kr/services/coupang): 구매를 앞둔 사람의 검색 결과
+- [당근 광고](https://www.daehanmedia.kr/services/daangn): 매장 반경 안의 이웃
+- [틱톡 광고](https://www.daehanmedia.kr/services/tiktok): 10~30대가 머무는 숏폼
+- [배달앱 광고](https://www.daehanmedia.kr/services/delivery): 주문 직전의 가게 목록
+- [애플 서치애즈](https://www.daehanmedia.kr/services/apple): 아이폰 앱스토어 검색
+- [AI 검색 · 검색 최적화](https://www.daehanmedia.kr/services/seo): 검색 결과와 AI 답변 속의 자리
+- [문자 · 메일 · 앱 알림](https://www.daehanmedia.kr/services/message): 고객에게 직접 닿는 메시지
+- [홈페이지 · 영상 제작](https://www.daehanmedia.kr/services/make): 광고가 도착하는 홈페이지, 영상, 디자인
 - [진행 방식](https://www.daehanmedia.kr/process): 상담 · 설계 · 제작 · 집행 · 운영
 - [회사 소개](https://www.daehanmedia.kr/about): 인사말 · 일하는 구조 · 회사 정보
 - [상담 문의](https://www.daehanmedia.kr/contact): 전화 · 이메일 · 상담 문의서

@@ -33,6 +33,9 @@ DESIGN.md에 없는 색·폰트·효과는 절대 쓰지 않는다.
 - **`main`에 push하면 Vercel이 자동 배포**한다
 - 페이지마다 실제 주소(`/services`, `/about` 등)가 있다. 예전 주소는 두 갈래로 넘긴다: ① 서버 쪽 — `vercel.json` redirects가 `/media`·`/services/:slug` → `/services`, `/index.html` → `/`로 영구 이동(308). ② 브라우저 쪽 — 해시는 서버에 오지 않으므로, 홈에서 공용 JS의 `go()`가 예전 해시 주소 `/#/services/naver` 같은 것을 새 주소 `/services#naver`로 `location.replace` 한다(이때 인트로는 건너뜀)
 - 디자인·동작은 `site/assets/`의 공용 CSS·JS를, 문구·메타는 각 페이지 HTML을 수정한다. CSS·JS를 바꾸면 파일 이름의 날짜를 올리고 7개 페이지의 링크도 바꾼다. Astro 소스(`src/` 등)를 고쳐도 배포에 반영되지 않는다
+- 매체별 페이지 13개가 site/services/<매체>/index.html 에 있다. 서비스 페이지(site/services/index.html)의 광고 상품을 고치면 해당 매체 페이지의 상품 목록도 같이 고친다.
+- 공용 CSS는 site/assets/site.20261126.css 다.
+- IndexNow 키 파일 site/b8d0732c99ede0326abc9c1c64850b22.txt 는 지우지 말 것. 페이지를 추가하거나 고쳐서 배포한 뒤에는 바뀐 URL을 IndexNow(빙·네이버)로 제출한다.
 
 ### 되돌리기
 

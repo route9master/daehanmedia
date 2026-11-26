@@ -539,3 +539,14 @@ body.mopen .hx .ix a.t{display:grid;grid-template-columns:minmax(0,1fr) auto;ali
 }
 .hx .ix .s{font-weight:400}
 .doc table{margin-bottom:16px}
+
+/* 매체별 페이지 (2026-11-26) */
+.ph-top .k a{border-bottom:1px solid currentColor;padding-bottom:1px}
+.ph-top .k a:hover{color:var(--ink)}
+.svc-cat + .more{margin-top:6px}
+.rel{border-top:1px solid var(--ink)}
+.rel a{display:flex;align-items:baseline;justify-content:space-between;gap:8px 24px;flex-wrap:wrap;padding:22px 4px;border-bottom:1px solid var(--rule-2)}
+.rel a b{font-size:20px;font-weight:600;letter-spacing:-0.02em}
+.rel a span{font-size:15px;color:var(--dim)}
+.rel a:hover{opacity:.7}
+@media (max-width:760px){.rel a{padding:18px 2px}.rel a b{font-size:17px}.rel a span{font-size:13px}}
